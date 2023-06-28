@@ -11,4 +11,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Icons\" />
+    <Folder Include="wwwroot\Style\" />
+  </ItemGroup>
+
 </Project>

@@ -8,15 +8,19 @@ namespace Presentation.AppTiendaWeb.Controllers
     public class CitiesController : ControllerBase
     {
         [HttpGet]
-        public JsonResult GetCities()
+        public ActionResult<List<CityModelView>> GetCities()
         {
-            return new JsonResult(CityDataModelView.Current.Cities);
+            return Ok(CityDataModelView.Current.Cities);
         }
 
         [HttpGet("{id}")]
-        public JsonResult GetCity(int id)
+        public ActionResult<CityModelView> GetCity(int id)
         {
-            return new JsonResult(CityDataModelView.Current.Cities.FirstOrDefault(c => c.Id == id));
+            var city = CityDataModelView.Current.Cities.FirstOrDefault(c => c.Id == id);
+            if (city == null)
+                return NotFound();
+
+            return Ok(city);
         }
     }
 }
