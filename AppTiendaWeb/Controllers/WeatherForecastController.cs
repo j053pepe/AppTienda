@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Presentation.AppTiendaWeb.Model;
+using Presentation.AppTiendaWeb.Models;
 
 namespace Presentation.AppTiendaWeb.Controllers
 {

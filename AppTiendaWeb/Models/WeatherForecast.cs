@@ -1,4 +1,4 @@
-﻿namespace Presentation.AppTiendaWeb.Model
+﻿namespace Presentation.AppTiendaWeb.Models
 {
     public class WeatherForecast
     {
