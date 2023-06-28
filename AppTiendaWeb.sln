@@ -6,8 +6,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A711F9F2-B381-4250-ADE1-CCF27AC2EA8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.AppTiendaWeb", "AppTiendaWeb\Presentation.AppTiendaWeb.csproj", "{3EF892F9-0B72-4E1C-B24E-A6AAA802A1C8}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EF892F9-0B72-4E1C-B24E-A6AAA802A1C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EF892F9-0B72-4E1C-B24E-A6AAA802A1C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EF892F9-0B72-4E1C-B24E-A6AAA802A1C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EF892F9-0B72-4E1C-B24E-A6AAA802A1C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3EF892F9-0B72-4E1C-B24E-A6AAA802A1C8} = {59C1F974-600E-4158-AB3F-7115C6BB6E21}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5450AF01-B112-4A97-9185-1115537C8A6E}
 	EndGlobalSection
 EndGlobal
