@@ -5,15 +5,14 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace Infraestructure.Data.MSAccessModels
+namespace Core.Models.AppTiendaModels
 {
-    public partial class TiendaDetalle
+    public partial class ProductoDetalle
     {
-        public int TiendaId { get; set; }
+        public int ProductoId { get; set; }
         public string Descripcion { get; set; }
-        public string Direccion { get; set; }
         public string UrlImage { get; set; }
 
-        public virtual Tienda Tienda { get; set; }
+        public virtual Producto Producto { get; set; }
     }
 }

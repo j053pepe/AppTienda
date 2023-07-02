@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace Infraestructure.Data.MSAccessModels
+namespace Core.Models.AppTiendaModels
 {
     public partial class VentaDetalle
     {

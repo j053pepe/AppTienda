@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Models.AppTiendaModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,15 +7,15 @@ using Microsoft.EntityFrameworkCore.Metadata;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace Infraestructure.Data.MSAccessModels
+namespace Infraestructure.Data.StoreDbMapping
 {
-    public partial class ModelContext : DbContext
+    public partial class AppTiendaContext : DbContext
     {
-        public ModelContext()
+        public AppTiendaContext()
         {
         }
 
-        public ModelContext(DbContextOptions<ModelContext> options)
+        public AppTiendaContext(DbContextOptions<AppTiendaContext> options)
             : base(options)
         {
         }
@@ -28,13 +29,13 @@ namespace Infraestructure.Data.MSAccessModels
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaDetalle> VentaDetalle { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseJet("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\Data\\DbTiendaWeb.accdb;Jet OLEDB:Database Password=Abc1234$;");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseJet("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\Data\\DbTiendaWeb.accdb;Jet OLEDB:Database Password=Abc1234$;");
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

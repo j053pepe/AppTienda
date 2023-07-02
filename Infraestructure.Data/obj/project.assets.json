@@ -704,6 +704,30 @@
             "rid": "win"
           }
         }
+      },
+      "Core.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Core.Models": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "3.1.22"
+        },
+        "compile": {
+          "bin/placeholder/Core.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.Contracts.dll": {}
+        }
+      },
+      "Core.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Core.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.Models.dll": {}
+        }
       }
     }
   },
@@ -1804,10 +1828,22 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Core.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Core.Contracts/Core.Contracts.csproj",
+      "msbuildProject": "../Core.Contracts/Core.Contracts.csproj"
+    },
+    "Core.Models/1.0.0": {
+      "type": "project",
+      "path": "../Core.Models/Core.Models.csproj",
+      "msbuildProject": "../Core.Models/Core.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Core.Contracts >= 1.0.0",
+      "Core.Models >= 1.0.0",
       "EntityFrameworkCore.Jet >= 3.1.1",
       "EntityFrameworkCore.Jet.Data >= 3.1.1",
       "EntityFrameworkCore.Jet.Odbc >= 3.1.1",
@@ -1844,7 +1880,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\Core.Contracts\\Core.Contracts.csproj": {
+              "projectPath": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\Core.Contracts\\Core.Contracts.csproj"
+            },
+            "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\Core.Models\\Core.Models.csproj": {
+              "projectPath": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\Core.Models\\Core.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

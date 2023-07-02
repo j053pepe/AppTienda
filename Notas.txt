@@ -1,3 +1,3 @@
 Scaffold-DbContext "Server=yourserver;Database=database;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Model or 'D:\VSProject\Model' 
 
-Scaffold-DbContext Provider=Microsoft.ACE.OLEDB.12.0;Data Source="C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\AppTiendaWeb\Data\DbTiendaWeb.accdb";Persist Security Info=True Microsoft.EntityFrameworkCore.SqlServer -OutputDir Model or 'MSAccessModel' 
+Scaffold-DbContext Provider=Microsoft.ACE.OLEDB.12.0;Data Source="C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\AppTiendaWeb\Data\DbTiendaWeb.accdb";Persist Security Info=True Microsoft.EntityFrameworkCore.SqlServer -OutputDir AppTiendaContext or 'MSAccessModel' 

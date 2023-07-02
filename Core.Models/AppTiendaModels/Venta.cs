@@ -5,26 +5,23 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace Infraestructure.Data.MSAccessModels
+namespace Core.Models.AppTiendaModels
 {
-    public partial class Producto
+    public partial class Venta
     {
-        public Producto()
+        public Venta()
         {
             VentaDetalle = new HashSet<VentaDetalle>();
         }
 
-        public int? ProductoId { get; set; }
-        public string Nombre { get; set; }
-        public decimal? Precio { get; set; }
-        public int? Codigo { get; set; }
-        public DateTime? Fecha { get; set; }
-        public int? Stock { get; set; }
+        public int? VentaId { get; set; }
+        public decimal? Total { get; set; }
+        public int? NumeroPoductos { get; set; }
         public string UsuarioId { get; set; }
+        public DateTime? Fecha { get; set; }
         public bool? Activo { get; set; }
 
         public virtual Usuario Usuario { get; set; }
-        public virtual ProductoDetalle ProductoDetalle { get; set; }
         public virtual ICollection<VentaDetalle> VentaDetalle { get; set; }
     }
 }

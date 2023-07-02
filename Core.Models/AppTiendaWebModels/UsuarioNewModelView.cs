@@ -27,6 +27,27 @@ namespace Core.Models.AppTiendaWebModels
         [MinLength(10)]
         [MaxLength(10)]
         public string Telefono { get;set; }
-
+        public bool Activo { get; set; }
+        [Required]
+        [MinLength(3)]
+        [MaxLength(150)]
+        public string Calle { get; set; }
+        [Required]
+        [MinLength(6)]
+        [MaxLength(50)]
+        public string Ciudad { get; set; }
+        [Required]
+        [MinLength(6)]
+        [MaxLength(50)]
+        public string Colonia { get; set; }
+        [Required]
+        [MinLength(6)]
+        [MaxLength(6)]
+        public string Cp { get; set; }
+        public int EstadoId { get; set; }
+        [Required]
+        [MinLength(1)]
+        [MaxLength(5)]
+        public string Numero { get; set; }
     }
 }
