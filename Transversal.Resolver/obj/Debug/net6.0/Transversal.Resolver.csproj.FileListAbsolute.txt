@@ -1,0 +1,12 @@
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\bin\Debug\net6.0\Transversal.Resolver.deps.json
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\bin\Debug\net6.0\Transversal.Resolver.dll
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\bin\Debug\net6.0\Transversal.Resolver.pdb
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\Transversal.Resolver.csproj.AssemblyReference.cache
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\Transversal.Resolver.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\Transversal.Resolver.AssemblyInfoInputs.cache
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\Transversal.Resolver.AssemblyInfo.cs
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\Transversal.Resolver.csproj.CoreCompileInputs.cache
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\Transversal.Resolver.dll
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\refint\Transversal.Resolver.dll
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\Transversal.Resolver.pdb
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\ref\Transversal.Resolver.dll

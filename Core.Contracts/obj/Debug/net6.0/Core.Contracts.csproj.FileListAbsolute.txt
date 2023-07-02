@@ -1,0 +1,12 @@
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\bin\Debug\net6.0\Core.Contracts.deps.json
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\bin\Debug\net6.0\Core.Contracts.dll
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\bin\Debug\net6.0\Core.Contracts.pdb
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\Core.Contracts.csproj.AssemblyReference.cache
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\Core.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\Core.Contracts.AssemblyInfoInputs.cache
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\Core.Contracts.AssemblyInfo.cs
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\Core.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\Core.Contracts.dll
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\refint\Core.Contracts.dll
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\Core.Contracts.pdb
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Core.Contracts\obj\Debug\net6.0\ref\Core.Contracts.dll

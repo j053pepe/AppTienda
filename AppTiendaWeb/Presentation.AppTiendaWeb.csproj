@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Cabother.Swagger.UI" Version="1.0.3" />
+    <PackageReference Include="EntityFrameworkCore.Jet" Version="3.1.1" />
+    <PackageReference Include="EntityFrameworkCore.Jet.Data" Version="3.1.1" />
+    <PackageReference Include="EntityFrameworkCore.Jet.Odbc" Version="3.1.1" />
+    <PackageReference Include="EntityFrameworkCore.Jet.OleDb" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
   </ItemGroup>
 
