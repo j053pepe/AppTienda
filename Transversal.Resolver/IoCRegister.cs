@@ -12,6 +12,8 @@ namespace Transversal.Resolver
     {
         public static IServiceCollection AddRegistration(IServiceCollection services)
         {
+            IoCRegisterData.AddRegistration(services);
+            IoCRegisterRepository.AddRegistration(services);
             IoCRegisterService.AddRegistration(services);
             return services;
         }

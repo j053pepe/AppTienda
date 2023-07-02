@@ -28,4 +28,8 @@
     <ProjectReference Include="..\Core.Models\Core.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

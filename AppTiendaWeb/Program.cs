@@ -10,10 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+//ConnectionString
 builder.Services.AddDbContext<AppTiendaContext>(options =>
         options.UseJet(builder.Configuration.GetConnectionString("DbMsAccess")));
-
+//Registration Service with transversa.resolver
 IoCRegister.AddRegistration(builder.Services);
 
 var app = builder.Build();
