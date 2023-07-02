@@ -17,12 +17,14 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\Icons\" />
+    <Folder Include="wwwroot\Views\" />
     <Folder Include="wwwroot\Style\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Core.Models\Core.Models.csproj" />
     <ProjectReference Include="..\Infraestructure.Data\Infraestructure.Data.csproj" />
+    <ProjectReference Include="..\Transversal.Resolver\Transversal.Resolver.csproj" />
   </ItemGroup>
 
   <ItemGroup>

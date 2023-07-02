@@ -1,6 +1,7 @@
 using Infraestructure.Data.StoreDbMapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Transversal.Resolver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppTiendaContext>(options =>
         options.UseJet(builder.Configuration.GetConnectionString("DbMsAccess")));
+
+IoCRegister.AddRegistration(builder.Services);
 
 var app = builder.Build();
 

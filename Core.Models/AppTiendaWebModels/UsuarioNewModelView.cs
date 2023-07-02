@@ -11,10 +11,10 @@ namespace Core.Models.AppTiendaWebModels
         [Required]
         [MinLength(3)]
         [MaxLength(100)]
-        public string ApellidoPaterno { get; set; }
+        public string Paterno { get; set; }
         [MinLength(3)]
         [MaxLength(100)]
-        public string? ApellidoMaterno { get; set; }
+        public string? Materno { get; set; }
         [Required]
         [EmailAddress]
         [MinLength(3)]

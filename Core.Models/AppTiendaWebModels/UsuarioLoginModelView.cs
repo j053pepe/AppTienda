@@ -6,9 +6,9 @@ namespace Core.Models.AppTiendaWebModels
     {
         [Required(ErrorMessage ="Ingrese una direccion de correo valida.")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string EmailLogin { get; set; }
         [Required(ErrorMessage ="Ingrese una contraseña valida.")]
         [MinLength(6)]
-        public string Password { get; set; }
+        public string PasswordLogin { get; set; }
     }
 }

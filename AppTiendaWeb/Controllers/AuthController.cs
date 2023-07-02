@@ -25,11 +25,11 @@ namespace Presentation.AppTiendaWeb.Controllers
             ModelResponse<string> modelResponse = new();
             try
             {
-                var userDb = await _usuarioService.GetUsuarioByEmail(user.Email);
+                var userDb = await _usuarioService.GetUsuarioByEmail(user.EmailLogin);
                 if (userDb==null)                
                     return NotFound();
 
-                if (!UsuarioHelper.VerifyHashedPassword(userDb.Password, user.Password))
+                if (!UsuarioHelper.VerifyHashedPassword(userDb.Password, user.PasswordLogin))
                     return BadRequest("email o contraseña incorrecta.");
 
                 modelResponse.Data = "Login correcto";
@@ -65,7 +65,8 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<string>> GetUsers()
+        [Route("Status")]
+        public async Task<ActionResult<string>> Status()
         {
             ModelResponse<bool> modelResponse = new();
             try

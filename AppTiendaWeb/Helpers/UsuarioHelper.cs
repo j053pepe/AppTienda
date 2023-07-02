@@ -77,8 +77,8 @@ namespace Presentation.AppTiendaWeb.Helpers
             return new Usuario
             {
                 Activo = newUser.Activo,
-                ApellidoMaterno = newUser.ApellidoMaterno,
-                ApellidoPaterno = newUser.ApellidoPaterno,
+                ApellidoMaterno = newUser.Materno,
+                ApellidoPaterno = newUser.Paterno,
                 Email = newUser.Email,
                 Nombre = newUser.Nombre,
                 Password = newUser.Password,
