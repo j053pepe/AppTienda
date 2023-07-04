@@ -1,0 +1,130 @@
+[
+    {
+        "EstadoId": 1,
+        "Nombre": "Aguascalientes"
+    },
+    {
+        "EstadoId": 2,
+        "Nombre": "Baja California"
+    },
+    {
+        "EstadoId": 3,
+        "Nombre": "Baja California Sur"
+    },
+    {
+        "EstadoId": 4,
+        "Nombre": "Campeche"
+    },
+    {
+        "EstadoId": 5,
+        "Nombre": "Coahuila de Zaragoza"
+    },
+    {
+        "EstadoId": 6,
+        "Nombre": "Colima"
+    },
+    {
+        "EstadoId": 7,
+        "Nombre": "Chiapas"
+    },
+    {
+        "EstadoId": 8,
+        "Nombre": "Chihuahua"
+    },
+    {
+        "EstadoId": 9,
+        "Nombre": "Ciudad de México"
+    },
+    {
+        "EstadoId": 10,
+        "Nombre": "Durango"
+    },
+    {
+        "EstadoId": 11,
+        "Nombre": "Guanajuato"
+    },
+    {
+        "EstadoId": 12,
+        "Nombre": "Guerrero"
+    },
+    {
+        "EstadoId": 13,
+        "Nombre": "Hidalgo"
+    },
+    {
+        "EstadoId": 14,
+        "Nombre": "Jalisco"
+    },
+    {
+        "EstadoId": 15,
+        "Nombre": "México"
+    },
+    {
+        "EstadoId": 16,
+        "Nombre": "Michoacán de Ocampo"
+    },
+    {
+        "EstadoId": 17,
+        "Nombre": "Morelos"
+    },
+    {
+        "EstadoId": 18,
+        "Nombre": "Nayarit"
+    },
+    {
+        "EstadoId": 19,
+        "Nombre": "Nuevo León"
+    },
+    {
+        "EstadoId": 20,
+        "Nombre": "Oaxaca"
+    },
+    {
+        "EstadoId": 21,
+        "Nombre": "Puebla"
+    },
+    {
+        "EstadoId": 22,
+        "Nombre": "Querétaro"
+    },
+    {
+        "EstadoId": 23,
+        "Nombre": "Quintana Roo"
+    },
+    {
+        "EstadoId": 24,
+        "Nombre": "San Luis Potosí"
+    },
+    {
+        "EstadoId": 25,
+        "Nombre": "Sinaloa"
+    },
+    {
+        "EstadoId": 26,
+        "Nombre": "Sonora"
+    },
+    {
+        "EstadoId": 27,
+        "Nombre": "Tabasco"
+    },
+    {
+        "EstadoId": 28,
+        "Nombre": "Tamaulipas"
+    },
+    {
+        "EstadoId": 29,
+        "Nombre": "Tlaxcala"
+    },
+    {
+        "EstadoId": 30,
+        "Nombre": "Veracruz de Ignacio de la Llave"
+    },
+    {
+        "EstadoId": 31,
+        "Nombre": "Yucatán"
+    },
+    {
+        "EstadoId": 32,
+        "Nombre": "Zacatecas"
+    }
+]

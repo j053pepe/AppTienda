@@ -41,13 +41,13 @@ namespace Core.Models.AppTiendaWebModels
         [MaxLength(50)]
         public string Colonia { get; set; }
         [Required]
-        [MinLength(6)]
+        [MinLength(5)]
         [MaxLength(6)]
         public string Cp { get; set; }
         public int EstadoId { get; set; }
         [Required]
         [MinLength(1)]
-        [MaxLength(5)]
+        [MaxLength(20)]
         public string Numero { get; set; }
     }
 }

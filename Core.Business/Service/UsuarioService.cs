@@ -1,43 +1,57 @@
-﻿using Core.Contracts.Service;
+﻿using Core.Contracts.Data;
+using Core.Contracts.Repositories;
+using Core.Contracts.Service;
 using Core.Models.AppTiendaModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Business.Service
 {
     public class UsuarioService : IUsuarioService
     {
-        public Task<bool> CheckUsersActive()
+        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        public UsuarioService(IUsuarioRepository usuarioRepository, IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _usuarioRepository = usuarioRepository;
+            _unitOfWork = unitOfWork;
+        }
+        public async Task<bool> CheckUsersActive()
+        {
+            var result = await _usuarioRepository.Get(x => x.Activo.Value);
+            if (result.Any())
+                return true;
+            return false;
         }
 
-        public Task<int> Create(Usuario entity)
+        public async Task Create(Usuario entity)
         {
-            throw new NotImplementedException();
+            entity.UsuarioId = Guid.NewGuid().ToString();
+            await _usuarioRepository.Insert(entity);
+            await _unitOfWork.SaveAsync();
         }
 
-        public Task<List<Usuario>> GetAll()
+        public async Task<List<Usuario>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await _usuarioRepository.Get(filter: null, orderBy: null, includeProperties: "UsuarioDireccion");
+            return result.ToList();
         }
 
-        public Task<Usuario> GetUsuarioByEmail(string email)
+        public async Task<Usuario> GetUsuarioByEmail(string email)
         {
-            throw new NotImplementedException();
+            var result = await _usuarioRepository.Get(x => x.Email == email);
+            return result.FirstOrDefault();
         }
 
-        public Task<Usuario> GetUsuarioById(string usuarioId)
+        public async Task<Usuario> GetUsuarioById(string usuarioId)
         {
-            throw new NotImplementedException();
+            var result =await _usuarioRepository.GetByIdAsync(usuarioId);
+            return result;
         }
 
-        public Task<bool> Update(Usuario entity)
+        public async Task<bool> Update(Usuario entity)
         {
-            throw new NotImplementedException();
-        }
+            await _usuarioRepository.Update(entity);
+            await _unitOfWork.SaveAsync();
+            return true;
+        }        
     }
 }

@@ -17,3 +17,5 @@ C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\bin
 C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\bin\Debug\net6.0\Core.Contracts.pdb
 C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\bin\Debug\net6.0\Core.Models.pdb
 C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\obj\Debug\net6.0\Transversal.Resolver.csproj.CopyComplete
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\bin\Debug\net6.0\Infraestructure.Data.dll
+C:\Users\Jose Guadalupe\source\repos\j053pepe\AppTienda\Transversal.Resolver\bin\Debug\net6.0\Infraestructure.Data.pdb

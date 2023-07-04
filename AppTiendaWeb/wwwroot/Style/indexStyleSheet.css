@@ -1,0 +1,9 @@
+div.error {
+    color: red
+}
+
+div.error a {
+    color: #369;
+    font-size: 12px;
+    text-decoration: underline
+}

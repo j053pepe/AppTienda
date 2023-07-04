@@ -20,13 +20,14 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPost]
+        [Route("Login")]
         public async Task<ActionResult<ModelResponse<string>>> Login(UsuarioLoginModelView user)
         {
             ModelResponse<string> modelResponse = new();
             try
             {
                 var userDb = await _usuarioService.GetUsuarioByEmail(user.EmailLogin);
-                if (userDb==null)                
+                if (userDb == null)
                     return NotFound();
 
                 if (!UsuarioHelper.VerifyHashedPassword(userDb.Password, user.PasswordLogin))
@@ -44,16 +45,27 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ModelResponse<string>>> Register(UsuarioNewModelView newUser)
+        [Route("Register")]
+        public async Task<ActionResult<ModelResponse<string>>> Register([FromForm] UsuarioNewModelView newUser)
         {
             ModelResponse<string> modelResponse = new();
             try
             {
-                Usuario entity = UsuarioHelper.UsuarioModelViewToModelDb(newUser);
-                entity.Activo = newUser.Activo;
-                entity.Password= UsuarioHelper.HashPassword(newUser.Password);
-                int result = await _usuarioService.Create(entity);
-                modelResponse.Data = "Registro creado con exito.";
+                var usuarioFind = await _usuarioService.GetUsuarioByEmail(newUser.Email);
+                if (usuarioFind != null)
+                {
+                    modelResponse.StatusCode = (int)EnumStatus.Error;
+                    modelResponse.Message = "Error al registrar usuario.";
+                    modelResponse.Data = "El correo ya existe en la base de datos.";
+                }
+                else
+                {
+                    Usuario entity = UsuarioHelper.UsuarioModelViewToModelDb(newUser);
+                    entity.Activo = newUser.Activo;
+                    entity.Password = UsuarioHelper.HashPassword(newUser.Password);
+                    await _usuarioService.Create(entity);
+                    modelResponse.Data = "Registro creado con exito.";
+                }
             }
             catch (Exception ex)
             {
