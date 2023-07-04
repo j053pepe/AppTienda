@@ -69,7 +69,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a href="#" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Salir</a></li>
+                        <li><a href="/index.html" id="btnSalir" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Salir</a></li>
                     </ul>
                 </div>
             </div>
@@ -81,7 +81,7 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" action="api/auth/login">
+                <form method="post" id="frmLogin">
                     <div class="modal-header">
                         <h3 class="modal-title">Login</h3>
                     </div>
@@ -90,21 +90,23 @@
                             <div class="col-12">
                                 <h4>Introduce tus credenciales</h4>
                             </div>
-                            <div class="mb-3">
-                                <label for="EmailLogin" class="form-label">Correo electronico</label>
-                                <input type="email" class="form-control" id="EmailLogin" aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">Nunca compartiremos tu correo electrónico con
-                                    nadie más.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="PasswordLogin" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="PasswordLogin">
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input type="email" id="EmailLogin" name="EmailLogin" class="form-control"
+                                        placeholder="email" required autocomplete="off" />
+                                    <label for="EmailLogin">Correo electronico</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" id="PasswordLogin" name="PasswordLogin" class="form-control"
+                                        placeholder="Contraseña" required autocomplete="off" />
+                                    <label for="PasswordLogin">Contraseña</label>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-primary">Entrar</button>
                         <button type="button" class="btn btn-outline-info" id="btnRegistro">Registrarse</a>
+                            <button type="submit" class="btn btn-outline-primary">Entrar</button>
                     </div>
                 </form>
             </div>
@@ -114,64 +116,64 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form method="post" autocomplete="off" id="frmRegister">                    
+                <form method="post" autocomplete="off" id="frmRegister">
                     <div class="modal-header">
                         <h3 class="modal-title">Registro</h3>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="mb-3">
-                                <div class="error">
-                                    <img src="Images/warning.gif" alt="Warning!" width="24" height="24"
-                                        style="float:left; margin: -5px 10px 0px 0px; ">
-                                    <span>You missed 3 fields. They have been highlighted below</span>.
-                                    <br clear="all">
-                                </div>
-                            </div>
                             <div class="col-12">
                                 <h5>Introduce tus datos</h5>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="name" required
-                                        autocomplete="off" />
+                                    <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="name"
+                                        required autocomplete="off" />
                                     <label for="Nombre">Nombre</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Paterno" name="Paterno" class="form-control" placeholder="paterno" required
-                                        autocomplete="off" />
+                                    <input type="text" id="Paterno" name="Paterno" class="form-control"
+                                        placeholder="paterno" required autocomplete="off" />
                                     <label for="Paterno">Apellido Paterno</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Materno" name="Materno" class="form-control" placeholder="materno" required
-                                        autocomplete="off" />
+                                    <input type="text" id="Materno" name="Materno" class="form-control"
+                                        placeholder="materno" required autocomplete="off" />
                                     <label for="Materno">Apellido Materno</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="tel" id="Telefono" name="Telefono" class="form-control" placeholder="telefono"
-                                        autocomplete="off" />
+                                    <input type="tel" id="Telefono" name="Telefono" class="form-control"
+                                        placeholder="telefono" autocomplete="off" />
                                     <label for="Telefono">Telefono</label>
+                                    <div class="valid-feedback" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="email" id="Email" name="Email" class="form-control" placeholder="email" required
-                                        autocomplete="off" />
+                                    <input type="email" id="Email" name="Email" class="form-control" placeholder="email"
+                                        required autocomplete="off" />
                                     <label for="Email">Email</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="password" id="Password" name="Password" class="form-control" placeholder="password"
-                                        required autocomplete="off" />
+                                    <input type="password" id="Password" name="Password" class="form-control"
+                                        placeholder="password" required autocomplete="off" />
                                     <label for="Password">Contraseña</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="password" id="Password2" name="Password2" class="form-control" placeholder="Password2"
-                                        required autocomplete="off" />
-                                    <label for="Password2">Confirma Contraseña</label>
+                                    <input type="password" id="ConfirmPassword" name="ConfirmPassword"
+                                        class="form-control" placeholder="ConfirmPassword" required
+                                        autocomplete="off" />
+                                    <label for="ConfirmPassword">Confirma Contraseña</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" checked id="Activo" name="Activo" disabled
-                                        readonly>
+                                    <input type="hidden" name="Activo" id="Activo" value="true" />
+                                    <input class="form-check-input" type="checkbox" checked disabled readonly>
                                     <label class="form-check-label">
                                         Activo
                                     </label>
@@ -187,39 +189,46 @@
                                         aria-label="Floating label select example">
                                     </select>
                                     <label for="EstadoId">Estado</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control" placeholder="Ciudad" required
-                                        autocomplete="off" />
+                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control"
+                                        placeholder="Ciudad" required autocomplete="off" />
                                     <label for="Ciudad">Ciudad</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="number" id="Cp" name="Cp" class="form-control" placeholder="codigo postal"
-                                        required autocomplete="off" />
+                                    <input type="number" id="Cp" name="Cp" class="form-control"
+                                        placeholder="codigo postal" required autocomplete="off" />
                                     <label for="Cp">Codigo Postal</label>
+                                    <div class="valid-feedback" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Colonia" name="Colonia" class="form-control" placeholder="Colonia" required
-                                        autocomplete="off" />
+                                    <input type="text" id="Colonia" name="Colonia" class="form-control"
+                                        placeholder="Colonia" required autocomplete="off" />
                                     <label for="Colonia">Colonia</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Calle" name="Calle" class="form-control" placeholder="Calle" required
-                                        autocomplete="off" />
+                                    <input type="text" id="Calle" name="Calle" class="form-control" placeholder="Calle"
+                                        required autocomplete="off" />
                                     <label for="Calle">Calle</label>
+                                    <div class="valid-feedback" />
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Numero" name="Numero" class="form-control" placeholder="Numero"
-                                        autocomplete="off" />
+                                    <input type="text" id="Numero" name="Numero" class="form-control"
+                                        placeholder="Numero" autocomplete="off" />
                                     <label for="Numero">Numero</label>
+                                    <div class="valid-feedback" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Entrar</button>
+                        <button type="button" class="btn btn-outline-info" id="btnLogin">Ya tengo cuenta</a>
+                            <button type="submit" class="btn btn-outline-primary">Registrar</button>
                     </div>
                 </form>
             </div>
@@ -228,11 +237,11 @@
     <script type="text/javascript" src="Plugins/jquery-3.7.0.min.js"></script>
     <script src="Plugins/popper.min.js"></script>
     <script src="Plugins/Bootstrap/bootstrap.min.js"></script>
-    <script src="Plugins/jquery.validate.js" type="text/javascript"></script>
     <script src="Plugins/AlertIfy/alertify.min.js" type="text/javascript"></script>
     <script src="Js/Service/ApiService.js" type="text/javascript"></script>
     <script src="Js/Component/ArrayComponent.js" type="text/javascript"></script>
     <script src="Js/Component/SelectComponent.js" type="text/javascript"></script>
+    <script src="Js/Service/Usuario.Services.js" type="text/javascript"></script>
     <script src="Js/Index.js" type="text/javascript" type="text/javascript"></script>
 </body>
 

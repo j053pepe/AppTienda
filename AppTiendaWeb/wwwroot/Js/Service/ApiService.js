@@ -4,15 +4,18 @@
     var Api = $.ajax({
         url: "/api/" + url,
         contentType: 'application/json; charset=utf-8',
+        "headers": {
+            "Token": localStorage.getItem("token")
+          },
         dataType: 'json',
         data: JSON.stringify(data),
         type: type,
     });
 
     Api.done(function (data) {
-        dfd.resolve(JSON.parse(data));
+        dfd.resolve(data);
     }).fail(function (data) {
-        dfd.reject(JSON.parse(data));
+        dfd.reject(data);
     });
 
     return dfd.promise();
@@ -24,6 +27,9 @@ var CallApiFormData = (type, url, data) => {
     var Api = $.ajax({
         url: "/api/" + url,
         processData: false,
+        "headers": {
+            "Token": localStorage.getItem("token")
+          },
         mimeType: "multipart/form-data",
         contentType: false,
         data: data,

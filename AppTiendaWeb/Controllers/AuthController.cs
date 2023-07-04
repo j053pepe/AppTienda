@@ -28,12 +28,21 @@ namespace Presentation.AppTiendaWeb.Controllers
             {
                 var userDb = await _usuarioService.GetUsuarioByEmail(user.EmailLogin);
                 if (userDb == null)
-                    return NotFound();
+                {
+                    modelResponse.Message = "email o contraseña incorrecta.";
+                    modelResponse.StatusCode = (int)EnumStatus.Error;
+                }
 
                 if (!UsuarioHelper.VerifyHashedPassword(userDb.Password, user.PasswordLogin))
-                    return BadRequest("email o contraseña incorrecta.");
-
-                modelResponse.Data = "Login correcto";
+                {
+                    modelResponse.Message = "email o contraseña incorrecta.";
+                    modelResponse.StatusCode = (int)EnumStatus.Error;
+                }
+                else
+                {
+                    modelResponse.Message = "Login correcto";
+                    modelResponse.Data = $"{AesOperationHelper.EncryptString(userDb.UsuarioId)}";
+                }
             }
             catch (Exception ex)
             {

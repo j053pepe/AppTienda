@@ -1,14 +1,25 @@
 ﻿$(function () {
     var main = {
+        init() {
+            this.events();
+            if (localStorage.getItem("token") == 'null' || localStorage.getItem("token") == null)
+                LoginRegister();
+            else
+                CallApi("get", "auth/Status")
+                    .then(result => {
+                        if (!result.data) {
+                            ModalAuth.hide();
+                            ModalRegister.show();
+                            $("#btnLogin").hide();
+                        } else
+                            this.DataUser();
+                    });
+        },
         events() {
-
-            CallApi("get", "auth/Status")
-                .then(result => {
-                    console.log("Status", result);
-                    LoginRegister();
-                });
+            $('#btnSalir').on('click',()=> {
+                localStorage.removeItem("token");
+            });
             LoginRegister = () => {
-                $("div.error").hide();
                 var ModalAuth = new bootstrap.Modal(document.getElementById('modalAuth'), {
                     keyboard: false
                 }),
@@ -16,9 +27,14 @@
                         keyboard: false
                     });
                 ModalAuth.toggle();
+                ModalAuth.show();
                 $("#btnRegistro").on('click', () => {
                     ModalAuth.hide();
                     ModalRegister.show();
+                });
+                $("#btnLogin").on('click', () => {
+                    ModalAuth.show();
+                    ModalRegister.hide();
                 });
                 document.getElementById('modalRegister').addEventListener('hidden.bs.modal', function (event) {
                     ModalAuth.show();
@@ -28,55 +44,49 @@
                     .done(result => {
                         SelectComponent.FillSelect("#EstadoId", ArrayComponent.DynamicArrayToSelectArray(result, "EstadoId", "Nombre"));
                     });
-                $("#frmRegister").validate({
-                    rules: {
-                        Password: {
-                            required: true
-                        },
-                        Password2: {
-                            required: true,
-                            equalTo: "#Password"
-                        }
-                    },
-                    messages: {
-                        Password: "Contraseña requerdia.",
-                        Password2: "Por favor ingresa la misma contraseña."
-                    },
-                    invalidHandler: function (e, validator) {
-                        var errors = validator.numberOfInvalids();
-                        if (errors) {
-                            var message = errors == 1 ? 'Te has saltado 1 campo. Han sido destacados acontinuacion' : 'Te has saltado ' + errors + ' campos.  Ellos han sido destacados acontinuacion';
-                            $("div.error span").html(message);
-                            $("div.error").show();
-                        } else {
-                            $("div.error").hide();
-                        }
-                    }
-                });
                 $('#frmRegister').on('submit', function (e) {
                     e.preventDefault();
                     const formData = document.getElementById("frmRegister");
-                    if (formData.checkValidity()) {
-                        let frmFormData = new FormData(formData);
-                        frmFormData.append("Activo", true);
-                        CallApiFormData("post", "auth/Register", frmFormData)
-                            .done(result => {
-                                console.log("Result", result);
-                                if (result.statusCode == 200)
-                                    alertify.alert('Usuario', 'Usuario creado con exito!', function () { alertify.success('Guardado'); });
-                                else
-                                    alertify.alert('Usuario', 'Error al crear el usuario!', function () { alertify.success(result.message); });
-                            });
-                    }
+                    let frmFormData = new FormData(formData);
+                    frmFormData.append("Activo", true);
+                    CallApiFormData("post", "auth/Register", frmFormData)
+                        .done(result => {
+                            if (result.statusCode == 200)
+                                alertify.alert('Usuario', 'Usuario creado con exito!', function () { alertify.success('Guardado'); });
+                            else
+                                alertify.alert('Usuario', 'Error al crear el usuario!', function () { alertify.error(result.message); });
+                        })
+                        .fail(result => {
+                            alertify.alert('Usuario', 'Error al crear el usuario!', function () { alertify.error(result.message); });
+                        });
+                });
+                $('#frmLogin').on('submit', function (e) {
+                    e.preventDefault();
+                    const formData = document.getElementById("frmLogin");
+                    let frmFormData = new FormData(formData);
+                    CallApi("post", "auth/login", Object.fromEntries(frmFormData))
+                        .done(result => {
+                            if (result.statusCode == 200) {
+                                localStorage.setItem("token", result.data);
+                                ModalAuth.hide();
+                                main.DataUser();
+                            }
+                            else
+                                alertify.alert('Usuario', 'Error al iniciar sesion!', function () { alertify.error(result.message); });
+                        })
+                        .fail(result => {
+                            alertify.alert('Usuario', 'Error al iniciar sesion!');
+                        });
                 });
             };
-            GetData = () => {
-                return {
-                    Nombre: ""
-                };
-            }
+        },
+        DataUser() {
+            UsuarioServices.Get()
+            .done(result=> {
+                $("#lblNameUser").text(`${result.data.nombre} ${result.data.apellidoPaterno} ${result.data.apellidoMaterno}`);
+            });
         }
     };
 
-    main.events();
+    main.init();
 });
