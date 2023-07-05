@@ -14,6 +14,9 @@ namespace Transversal.Resolver.Register
         public static IServiceCollection AddRegistration(IServiceCollection services)
         {
             services.AddTransient<IUsuarioService, UsuarioService>();
+            services.AddTransient<IProductoService, ProductoService>();
+            services.AddTransient<ITiendaService, TiendaService>();
+            services.AddTransient<IVentaService, VentaService>();
 
             return services;
         }

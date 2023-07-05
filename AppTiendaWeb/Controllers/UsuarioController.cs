@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Presentation.AppTiendaWeb.CustomAttributes;
 using Core.Models.AppTiendaModels;
 using Presentation.AppTiendaWeb.Helpers;
+using Core.Models.AppTiendaWebModels;
 
 namespace Presentation.AppTiendaWeb.Controllers
 {
@@ -13,22 +14,31 @@ namespace Presentation.AppTiendaWeb.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
-        public UsuarioController(IUsuarioService usuarioService)
+        private readonly ITiendaService _tiendaService;
+        public UsuarioController(IUsuarioService usuarioService, ITiendaService tiendaService)
         {
             _usuarioService = usuarioService;
+            _tiendaService = tiendaService;
         }
 
         [HttpGet]
         [ValidateToken]
-        public async Task<ActionResult<Usuario>> Get()
+        [Route("BasicData")]
+        public async Task<ActionResult<Usuario>> GetUserAndTienda()
         {
-            ModelResponse<Usuario> modelResponse = new();
+            ModelResponse<UsuarioTiendaView> modelResponse = new();
             try
             {
                 string token = Request.Headers["Token"];
                 var userId = AesOperationHelper.DecryptString(token);
-                var response = await _usuarioService.GetUsuarioById(userId);
-                modelResponse.Data = response;
+                var responseUser = await _usuarioService.GetUsuarioById(userId);
+                var responseStore = await _tiendaService.GetTienda();
+                modelResponse.Data = new UsuarioTiendaView
+                {
+                    UsuarioNombre = $"{responseUser.Nombre} {responseUser.ApellidoPaterno} {responseUser.ApellidoMaterno}",
+                    StoreExists = responseStore != null,
+                    TiendaNombre = responseStore?.Nombre,
+                };
             }
             catch (Exception ex)
             {

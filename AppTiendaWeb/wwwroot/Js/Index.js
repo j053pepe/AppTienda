@@ -16,7 +16,7 @@
                     });
         },
         events() {
-            $('#btnSalir').on('click',()=> {
+            $('#btnSalir').on('click', () => {
                 localStorage.removeItem("token");
             });
             LoginRegister = () => {
@@ -81,10 +81,22 @@
             };
         },
         DataUser() {
-            UsuarioServices.Get()
-            .done(result=> {
-                $("#lblNameUser").text(`${result.data.nombre} ${result.data.apellidoPaterno} ${result.data.apellidoMaterno}`);
+            UsuarioServices.GetBasicData()
+                .done(result => {
+                    $("#lblNameUser").text(result.data.usuarioNombre);
+                    if (result.data.StoreExists)
+                        $('#lblNameStore').text(result.data.tiendaNombre);
+                    else
+                    alertify.alert("Alerta","Es necesario dar de alta una tienda.",()=> {main.CrearTienda();}); 
+                });
+        },
+        CrearTienda() {            
+            var ModalTiendaRegister = new bootstrap.Modal(document.getElementById('modalFirstTienda'), {
+                keyboard: false
             });
+            ModalTiendaRegister.toggle();
+            ModalTiendaRegister.show();
+            //$('#modalFirstTienda')
         }
     };
 

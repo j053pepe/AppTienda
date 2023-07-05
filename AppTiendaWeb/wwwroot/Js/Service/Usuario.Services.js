@@ -1,6 +1,6 @@
 var UsuarioServices = {
-    Get: () => {
-        return CallApi("get","usuario")
+    GetBasicData: () => {
+        return CallApi("get","usuario/BasicData")
         .done(result=> {
             return result;
         });
