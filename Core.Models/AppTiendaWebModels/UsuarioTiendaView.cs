@@ -11,5 +11,6 @@ namespace Core.Models.AppTiendaWebModels
         public string UsuarioNombre { get;set; }
         public bool StoreExists { get;set; }
         public string TiendaNombre { get;set; } = string.Empty;
+        public string ImageLogo {get;set; }= string.Empty;
     }
 }

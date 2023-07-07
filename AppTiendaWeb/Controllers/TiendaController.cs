@@ -21,9 +21,9 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPost]
-        [Route("Register")]
         [ValidateToken]
-        public async Task<ActionResult<ModelResponse<string>>> NuevaTienda(TiendaNewModelView tiendaWeb)
+        [Route("Register")]        
+        public async Task<ActionResult<ModelResponse<string>>> NuevaTienda([FromForm]TiendaNewModelView tiendaWeb)
         {
             ModelResponse<string> modelResponse = new ModelResponse<string>();
             try
@@ -35,7 +35,7 @@ namespace Presentation.AppTiendaWeb.Controllers
                 Tienda responseTiendaNueva = await _tiendaService.GetTienda();
                 if (responseTiendaNueva != null)
                 {
-                    responseTiendaNueva.TiendaDetalle.UrlImage = TiendaHelper.GuardarImagenTienda(responseTiendaNueva.TiendaId, tiendaWeb.Imagen);
+                    responseTiendaNueva.TiendaDetalle.UrlImage = TiendaHelper.GuardarImagenTienda(responseTiendaNueva.TiendaId, tiendaWeb.ImagenTienda);
                     await _tiendaService.UpdateTienda(responseTiendaNueva);
                     modelResponse.Data = "Se genero la tienda correctamente";
                 }

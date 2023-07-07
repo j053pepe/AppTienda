@@ -76,8 +76,12 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid" id="divDynamic">
-    </div>
+    <div class="text-center" style="background-color: #adb5bd;">
+        <img id="urlImageTienda" alt="tienda-logo" class="img-fluid" width="800" height="600" >
+        <div class="container-fluid" id="divDynamic" >
+            <p>hola</p>
+        </div>
+    </div>    
     <div class="modal" id="modalAuth" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -250,40 +254,40 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="name"
+                                    <input type="text" id="NombreTiendaNueva" name="NombreTiendaNueva" class="form-control" placeholder="NombreTienda"
                                         required autocomplete="off" />
-                                    <label for="Nombre">Nombre</label>
+                                    <label for="NombreTiendaNueva">Nombre de tienda</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Paterno" name="Paterno" class="form-control"
-                                        placeholder="paterno" required autocomplete="off" />
-                                    <label for="Paterno">Descripcion</label>
+                                    <textarea type="text" id="DescripcionTiendaNueva" name="DescripcionTiendaNueva" class="form-control"
+                                        placeholder="DescripcionTiendaNueva" required autocomplete="off" ></textarea>
+                                    <label for="DescripcionTiendaNueva">Descripción de la tienda</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="Materno" name="Materno" class="form-control"
-                                        placeholder="materno" required autocomplete="off" />
-                                    <label for="Materno">Direccion</label>
+                                    <textarea rows="2" id="DireccionTiendaNueva" name="DireccionTiendaNueva" class="form-control"
+                                        placeholder="DireccionTiendaNueva" required autocomplete="off"></textarea>
+                                    <label for="DireccionTiendaNueva">Direccion</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="tel" id="Telefono" name="Telefono" class="form-control"
-                                        placeholder="telefono" autocomplete="off" />
-                                    <label for="Telefono">Telefono</label>
+                                    <input type="tel" id="TelefonoTiendaNueva" name="TelefonoTiendaNueva" class="form-control"
+                                        placeholder="TelefonoTiendaNueva" autocomplete="off" />
+                                    <label for="TelefonoTiendaNueva">Telefono</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="email" id="Email" name="Email" class="form-control" placeholder="email"
+                                    <input type="email" id="EmailTiendaNueva" name="EmailTiendaNueva" class="form-control" placeholder="email"
                                         required autocomplete="off" />
-                                    <label for="Email">Email</label>
+                                    <label for="EmailTiendaNueva">Email</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">Selecciona el logo de la tienda</label>
-                                    <input class="form-control" type="file" id="formFile" accept="image/*">
+                                    <label for="ImagenTiendaNueva" class="form-label">Selecciona el logo de la tienda</label>
+                                    <input class="form-control" type="file" id="ImagenTiendaNueva" accept="image/*">
                                   </div>
                             </div>
                         </div>

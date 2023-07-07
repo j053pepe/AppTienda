@@ -10,12 +10,12 @@ namespace Presentation.AppTiendaWeb.Helpers
             return new Tienda()
             {
                 FechaCreacion = DateTime.Now,
-                Nombre = tiendaWeb.Nombre,
+                Nombre = tiendaWeb.NombreTiendaNueva,
                 UsuarioId = usuarioId,
                 TiendaDetalle = new TiendaDetalle
                 {
-                    Descripcion = tiendaWeb.Descripcion,
-                    Direccion = tiendaWeb.Direccion,
+                    Descripcion = tiendaWeb.DescripcionTiendaNueva,
+                    Direccion = tiendaWeb.DireccionTiendaNueva,
                     UrlImage = ""
                 }
             };
@@ -24,7 +24,7 @@ namespace Presentation.AppTiendaWeb.Helpers
         public static string GuardarImagenTienda(int tiendaId, IFormFile formFile)
         {
             byte[] fileByteArray;
-            string pathRoot = @$"~wwwroot/Images/Tienda/{tiendaId}";
+            string pathRoot = @$"wwwroot/Images/Tienda/{tiendaId}";
             if (!Directory.Exists(pathRoot))
                 Directory.CreateDirectory(pathRoot);
 
@@ -40,7 +40,7 @@ namespace Presentation.AppTiendaWeb.Helpers
                     File.WriteAllBytes(pathRoot, fileByteArray);
                 }
             }
-            return pathRoot;
+            return pathRoot.Replace("wwwroot", "");
         }
     }
 }

@@ -6,11 +6,15 @@ namespace Core.Models.AppTiendaWebModels
     public class TiendaNewModelView
     {
         [Required]
-        public string Nombre { get; set; }
+        public string NombreTiendaNueva { get; set; }
+
         [Required]
-        public string Descripcion { get; set; }
+        public string DescripcionTiendaNueva { get; set; }
+
         [Required]
-        public string Direccion { get; set; }
-        public IFormFile Imagen { get; set; }
+        public string DireccionTiendaNueva { get; set; }
+
+        [Required]
+        public IFormFile ImagenTienda { get; set; }
     }
 }

@@ -84,19 +84,41 @@
             UsuarioServices.GetBasicData()
                 .done(result => {
                     $("#lblNameUser").text(result.data.usuarioNombre);
-                    if (result.data.StoreExists)
+                    if (result.data.storeExists) {
                         $('#lblNameStore').text(result.data.tiendaNombre);
+                        $('#urlImageTienda')[0].src = result.data.imageLogo;
+                    }
                     else
-                    alertify.alert("Alerta","Es necesario dar de alta una tienda.",()=> {main.CrearTienda();}); 
+                        alertify.alert("Alerta", "Es necesario dar de alta una tienda.", () => { main.CrearTienda(); });
                 });
         },
-        CrearTienda() {            
+        CrearTienda() {
             var ModalTiendaRegister = new bootstrap.Modal(document.getElementById('modalFirstTienda'), {
                 keyboard: false
             });
             ModalTiendaRegister.toggle();
             ModalTiendaRegister.show();
-            //$('#modalFirstTienda')
+            $('#frmFirstTienda').on('submit', function (e) {
+                e.preventDefault();
+                if ($('#ImagenTiendaNueva')[0].files.length > 0) {
+                    let frmFormData = new FormData(document.getElementById("frmFirstTienda"));
+                    frmFormData.append("imagenTienda", $('#ImagenTiendaNueva')[0].files[0]);
+                    CallApiFormData("post", "tienda/register", frmFormData)
+                        .done(result => {
+                            if (result.statusCode == 200) {
+                                ModalTiendaRegister.hide();
+                                main.DataUser();
+                            }
+                            else
+                                alertify.alert('Tienda', 'Error al crear la tienda!', function () { alertify.error(result.message); });
+                        })
+                        .fail(result => {
+                            alertify.alert('Tienda', 'Error al crear la tienda!');
+                        });
+                }
+                else
+                    alertify.alert('Tienda', 'No ha seleccionado ninguna imagen!');
+            });
         }
     };
 

@@ -21,7 +21,7 @@ namespace Core.Business.Service
         }
         public async Task<Tienda> GetTienda()
         {
-            IEnumerable<Tienda> result = await _tienda.Get();
+            IEnumerable<Tienda> result = await _tienda.Get(filter: null, orderBy: null, includeProperties: "TiendaDetalle");
             return result.FirstOrDefault();
         }
 

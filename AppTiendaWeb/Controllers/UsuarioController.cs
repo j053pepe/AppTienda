@@ -36,7 +36,8 @@ namespace Presentation.AppTiendaWeb.Controllers
                 {
                     UsuarioNombre = $"{responseUser.Nombre} {responseUser.ApellidoPaterno} {responseUser.ApellidoMaterno}",
                     StoreExists = responseStore != null,
-                    TiendaNombre = responseStore?.Nombre,
+                    TiendaNombre = responseStore?.Nombre ?? "",
+                    ImageLogo = (responseStore?.TiendaDetalle?.UrlImage ?? "").Replace("wwwroot", "")
                 };
             }
             catch (Exception ex)
