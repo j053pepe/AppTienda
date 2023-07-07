@@ -9,7 +9,7 @@ namespace Presentation.AppTiendaWeb.CustomAttributes
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class ValidateToken : Attribute, IAsyncActionFilter
-    {        
+    {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             ModelResponse<string> modelResponse = new();
@@ -21,9 +21,8 @@ namespace Presentation.AppTiendaWeb.CustomAttributes
                 context.Result = new OkObjectResult(modelResponse);
             else
             {
-                var userId = AesOperationHelper.DecryptString(token);
                 IUsuarioService usuarioService = context.HttpContext.RequestServices.GetRequiredService<IUsuarioService>();
-                var response = await usuarioService.GetUsuarioById(userId);
+                var response = await UsuarioHelper.TokenToUsuarioAsync(token, usuarioService);
                 if (response is null)
                     context.Result = new OkObjectResult(modelResponse);
                 else

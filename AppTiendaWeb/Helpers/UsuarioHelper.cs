@@ -1,4 +1,5 @@
-﻿using Core.Models.AppTiendaModels;
+﻿using Core.Contracts.Service;
+using Core.Models.AppTiendaModels;
 using Core.Models.AppTiendaWebModels;
 using System.Security.Cryptography;
 
@@ -72,6 +73,16 @@ namespace Presentation.AppTiendaWeb.Helpers
 
         }
 
+        private static bool AreHashesEqual(byte[] firstHash, byte[] secondHash)
+        {
+            int _minHashLength = firstHash.Length <= secondHash.Length ? firstHash.Length : secondHash.Length;
+            var xor = firstHash.Length ^ secondHash.Length;
+            for (int i = 0; i < _minHashLength; i++)
+                xor |= firstHash[i] ^ secondHash[i];
+            return 0 == xor;
+        }
+        #endregion
+
         public static Usuario UsuarioModelViewToModelDb(UsuarioNewModelView newUser)
         {
             return new Usuario
@@ -94,15 +105,11 @@ namespace Presentation.AppTiendaWeb.Helpers
                 }
             };
         }
-
-        private static bool AreHashesEqual(byte[] firstHash, byte[] secondHash)
+        public static async Task<Usuario> TokenToUsuarioAsync(string token, IUsuarioService _usuarioService)
         {
-            int _minHashLength = firstHash.Length <= secondHash.Length ? firstHash.Length : secondHash.Length;
-            var xor = firstHash.Length ^ secondHash.Length;
-            for (int i = 0; i < _minHashLength; i++)
-                xor |= firstHash[i] ^ secondHash[i];
-            return 0 == xor;
+            var userId = AesOperationHelper.DecryptString(token);
+            var responseUser = await _usuarioService.GetUsuarioById(userId);
+            return responseUser;
         }
-        #endregion
     }
 }

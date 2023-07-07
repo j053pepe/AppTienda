@@ -30,8 +30,7 @@ namespace Presentation.AppTiendaWeb.Controllers
             try
             {
                 string token = Request.Headers["Token"];
-                var userId = AesOperationHelper.DecryptString(token);
-                var responseUser = await _usuarioService.GetUsuarioById(userId);
+                var responseUser = await UsuarioHelper.TokenToUsuarioAsync(token, _usuarioService);
                 var responseStore = await _tiendaService.GetTienda();
                 modelResponse.Data = new UsuarioTiendaView
                 {

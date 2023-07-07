@@ -25,19 +25,21 @@ namespace Core.Business.Service
             return result.FirstOrDefault();
         }
 
-        public Task<Tienda> GetTiendaById(int id)
+        public async Task<Tienda> GetTiendaById(int id)
         {
-            throw new NotImplementedException();
+            return await _tienda.GetByIdAsync(id);
         }
 
-        public Task NuevaTienda(Tienda entity)
+        public async Task NuevaTienda(Tienda entity)
         {
-            throw new NotImplementedException();
+            await _tienda.Insert(entity);
+            await _unitOfWork.SaveAsync();
         }
 
-        public Task UpdateTienda(Tienda entity)
+        public async Task UpdateTienda(Tienda entity)
         {
-            throw new NotImplementedException();
+            await _tienda.Update(entity);
+            await _unitOfWork.SaveAsync();
         }
     }
 }
