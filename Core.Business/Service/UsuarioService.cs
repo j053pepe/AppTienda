@@ -16,7 +16,7 @@ namespace Core.Business.Service
         }
         public async Task<bool> CheckUsersActive()
         {
-            var result = await _usuarioRepository.Get(x => x.Activo.Value);
+            var result = await _usuarioRepository.Get(x => x.Activo);
             if (result.Any())
                 return true;
             return false;

@@ -1,10 +1,12 @@
-﻿using Core.Contracts.Service;
+﻿using Core.Business;
+using Core.Contracts.Service;
 using Core.Models;
 using Core.Models.AppTiendaModels;
 using Core.Models.AppTiendaWebModels;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.AppTiendaWeb.CustomAttributes;
 using Presentation.AppTiendaWeb.Helpers;
+using System.Text.Json;
 
 namespace Presentation.AppTiendaWeb.Controllers
 {
@@ -14,10 +16,12 @@ namespace Presentation.AppTiendaWeb.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly ITiendaService _tiendaService;
-        public TiendaController(IUsuarioService usuarioService, ITiendaService tiendaService)
+        private readonly ConfigAppWeb _config;
+        public TiendaController(IUsuarioService usuarioService, ITiendaService tiendaService, ConfigAppWeb config)
         {
             _usuarioService = usuarioService;
             _tiendaService = tiendaService;
+            _config = config;
         }
 
         [HttpPost]
@@ -28,8 +32,7 @@ namespace Presentation.AppTiendaWeb.Controllers
             ModelResponse<string> modelResponse = new ModelResponse<string>();
             try
             {
-                string token = Request.Headers["Token"];
-                var responseUser = await UsuarioHelper.TokenToUsuarioAsync(token, _usuarioService);
+                Usuario responseUser = JsonSerializer.Deserialize<Usuario>(_config.Application["Usuario"]);
                 Tienda entity = TiendaHelper.ViewRegisterToEntity(tiendaWeb, responseUser.UsuarioId);
                 await _tiendaService.NuevaTienda(entity);
                 Tienda responseTiendaNueva = await _tiendaService.GetTienda();

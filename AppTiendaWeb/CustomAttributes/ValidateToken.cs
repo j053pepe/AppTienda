@@ -1,9 +1,13 @@
-﻿using Core.Contracts.Service;
+﻿using Core.Business;
+using Core.Contracts.Service;
 using Core.Models;
+using Core.Models.AppTiendaModels;
 using Core.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Presentation.AppTiendaWeb.Helpers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Presentation.AppTiendaWeb.CustomAttributes
 {
@@ -26,8 +30,35 @@ namespace Presentation.AppTiendaWeb.CustomAttributes
                 if (response is null)
                     context.Result = new OkObjectResult(modelResponse);
                 else
-                    await next();
+                {
+                    if (!response.Activo)
+                    {
+                        modelResponse.Message = "Usuario inactivo";
+                        context.Result = new OkObjectResult(modelResponse);
+                    }
+                    else
+                    {
+                        ConfigAppWeb _config = context.HttpContext.RequestServices.GetRequiredService<ConfigAppWeb>();
+                        _config = SetUsuarioToConfig(response, _config);
+                        await next();
+                    }
+                }
             }
+        }
+
+        private ConfigAppWeb SetUsuarioToConfig(Usuario usuario, ConfigAppWeb _config)
+        {
+            dynamic usr = new
+            {
+                usuario.UsuarioId,
+                usuario.Nombre,
+                usuario.ApellidoPaterno,
+                usuario.ApellidoMaterno,
+                usuario.Email,
+                usuario.Telefono
+            };
+            _config.Application["Usuario"] = JsonSerializer.Serialize<dynamic>(usr);
+            return _config;
         }
     }
 }

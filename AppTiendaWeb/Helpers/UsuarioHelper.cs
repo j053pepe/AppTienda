@@ -105,6 +105,18 @@ namespace Presentation.AppTiendaWeb.Helpers
                 }
             };
         }
+        public static UsuarioConsultaModelView UsuarioToUsuarioConsultaModelView(Usuario usuario)
+        {
+            return new UsuarioConsultaModelView
+            {
+                UsuarioId = usuario.UsuarioId,
+                Activo = usuario.Activo,
+                Email = usuario.Email,
+                Materno = usuario.ApellidoMaterno,
+                Nombre = usuario.Nombre,
+                Paterno = usuario.ApellidoPaterno
+            };
+        }
         public static async Task<Usuario> TokenToUsuarioAsync(string token, IUsuarioService _usuarioService)
         {
             var userId = AesOperationHelper.DecryptString(token);

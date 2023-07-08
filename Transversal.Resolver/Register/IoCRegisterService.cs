@@ -1,4 +1,5 @@
-﻿using Core.Business.Service;
+﻿using Core.Business;
+using Core.Business.Service;
 using Core.Contracts.Service;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,6 +19,7 @@ namespace Transversal.Resolver.Register
             services.AddTransient<ITiendaService, TiendaService>();
             services.AddTransient<IVentaService, VentaService>();
 
+            services.AddSingleton<ConfigAppWeb>();
             return services;
         }
     }

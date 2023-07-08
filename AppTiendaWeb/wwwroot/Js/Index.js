@@ -86,7 +86,7 @@
                     $("#lblNameUser").text(result.data.usuarioNombre);
                     if (result.data.storeExists) {
                         $('#lblNameStore').text(result.data.tiendaNombre);
-                        $('#urlImageTienda')[0].src = result.data.imageLogo;
+                        $('#divImageTienda').css('background-image', 'url(' + result.data.imageLogo + ')');
                     }
                     else
                         alertify.alert("Alerta", "Es necesario dar de alta una tienda.", () => { main.CrearTienda(); });
