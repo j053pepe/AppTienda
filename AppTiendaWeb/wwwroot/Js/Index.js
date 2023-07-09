@@ -1,19 +1,30 @@
 ﻿$(function () {
     var main = {
         init() {
-            this.events();
-            if (localStorage.getItem("token") == 'null' || localStorage.getItem("token") == null)
-                LoginRegister();
-            else
-                CallApi("get", "auth/Status")
-                    .then(result => {
-                        if (!result.data) {
-                            ModalAuth.hide();
-                            ModalRegister.show();
-                            $("#btnLogin").hide();
-                        } else
-                            this.DataUser();
-                    });
+            CallJson("data/Menu.json")
+                .done(result => {
+                    this.MenuJson = result;
+
+                    if (window.location.hash.length == 0) {
+                        this.MenuClick();
+                        this.events();
+                        if (localStorage.getItem("token") == 'null' || localStorage.getItem("token") == null)
+                            LoginRegister();
+                        else
+                            CallApi("get", "auth/Status")
+                                .then(result => {
+                                    if (!result.data) {
+                                        ModalAuth.hide();
+                                        ModalRegister.show();
+                                        $("#btnLogin").hide();
+                                    } else
+                                        this.DataUser();
+                                });
+                    } else {
+                        this.EventMenu(parseInt(window.location.hash.split('#')[1]));
+                        this.DataUser();
+                    }
+                });
         },
         events() {
             $('#btnSalir').on('click', () => {
@@ -119,6 +130,28 @@
                 else
                     alertify.alert('Tienda', 'No ha seleccionado ninguna imagen!');
             });
+        },
+        MenuClick() {
+            var itemMenu = document.querySelectorAll('a[name="linkMenu"]');
+
+            itemMenu.forEach(x => {
+                x.addEventListener('click', event => {
+                    this.EventMenu(parseInt($(x)[0].href.split('#')[1]));
+                });
+            });
+        },
+        MenuJson: [{ MenuId: 0, View: "", Js: "" }],
+        EventMenu(menuId) {
+            let indexMenu = this.MenuJson.findIndex(x => x.MenuId == menuId);
+            if (indexMenu != -1) {
+                LoadContent(this.MenuJson[indexMenu].View+`?${new Date().getTime()}`)
+                    .done(html => {
+                        document.getElementById('divDynamic').innerHTML = html;
+                        $("#divDynamic").append(`<script src=${this.MenuJson[indexMenu].Js}?${new Date().getTime()} type="text/javascript" type="text/javascript"></script>`);
+                    });
+            }
+            else
+                alertify.alert('Menu', 'Dirección url incorrecta!', () => { window.location = "/index.html"; });
         }
     };
 

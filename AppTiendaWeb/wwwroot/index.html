@@ -25,30 +25,39 @@
             <div class="collapse navbar-collapse" id="navbarMobileToggle">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Vender</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tienda</a>
+                        <a class="nav-link active" aria-current="page" href="#" name="linkMenu">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="Submenu-Dropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="MenuVenderSub" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Vender
+                        </a>
+                        <ul class="dropdown-menu rounded-3" aria-labelledby="MenuVenderSub">
+                            <li><a class="dropdown-item" href="#1" name="linkMenu">Nueva Venta</a></li>
+                            <li><a class="dropdown-item" href="#2" name="linkMenu">Reporte</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#3" name="linkMenu">Tienda</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="MenuProductoSub" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Producto
                         </a>
-                        <ul class="dropdown-menu rounded-3" aria-labelledby="Submenu-Dropdown">
-                            <li><a class="dropdown-item" href="#">Administrar</a></li>
+                        <ul class="dropdown-menu rounded-3" aria-labelledby="MenuProductoSub">
+                            <li><a class="dropdown-item" href="#4" name="linkMenu">Consutla</a></li>
+                            <li><a class="dropdown-item" href="#5" name="linkMenu">Reporte</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="Submenu-Dropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="MenuUsuarioSub" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Usuarios
                         </a>
-                        <ul class="dropdown-menu rounded-3" aria-labelledby="Submenu-Dropdown">
-                            <li><a class="dropdown-item" href="#Usuario/Consulta">Consulta</a></li>
+                        <ul class="dropdown-menu rounded-3" aria-labelledby="MenuUsuarioSub">
+                            <li><a class="dropdown-item" href="#6" name="linkMenu">Consulta</a></li>
+                            <li><a class="dropdown-item" href="#7" name="linkMenu">Reporte</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -73,10 +82,12 @@
             </div>
         </div>
     </nav>
-    <div id="divImageTienda" class="container-fluid bg-image d-flex justify-content-center" style="height: 100vh; opacity: 0.5;">        
-        <div id="divDynamic" class="container position-relative" >
+    <div class="container-fluid">
+        <img id="divImageTienda" class="tiendaImg img-fluid"/>
+        <div id="divDynamic" class="container position-relative">
         </div>
-    </div>    
+    </div>
+
     <div class="modal" id="modalAuth" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -249,46 +260,49 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="NombreTiendaNueva" name="NombreTiendaNueva" class="form-control" placeholder="NombreTienda"
-                                        required autocomplete="off" />
+                                    <input type="text" id="NombreTiendaNueva" name="NombreTiendaNueva"
+                                        class="form-control" placeholder="NombreTienda" required autocomplete="off" />
                                     <label for="NombreTiendaNueva">Nombre de tienda</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <textarea type="text" id="DescripcionTiendaNueva" name="DescripcionTiendaNueva" class="form-control"
-                                        placeholder="DescripcionTiendaNueva" required autocomplete="off" ></textarea>
+                                    <textarea type="text" id="DescripcionTiendaNueva" name="DescripcionTiendaNueva"
+                                        class="form-control" placeholder="DescripcionTiendaNueva" required
+                                        autocomplete="off"></textarea>
                                     <label for="DescripcionTiendaNueva">Descripción de la tienda</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <textarea rows="2" id="DireccionTiendaNueva" name="DireccionTiendaNueva" class="form-control"
-                                        placeholder="DireccionTiendaNueva" required autocomplete="off"></textarea>
+                                    <textarea rows="2" id="DireccionTiendaNueva" name="DireccionTiendaNueva"
+                                        class="form-control" placeholder="DireccionTiendaNueva" required
+                                        autocomplete="off"></textarea>
                                     <label for="DireccionTiendaNueva">Direccion</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="tel" id="TelefonoTiendaNueva" name="TelefonoTiendaNueva" class="form-control"
-                                        placeholder="TelefonoTiendaNueva" autocomplete="off" />
+                                    <input type="tel" id="TelefonoTiendaNueva" name="TelefonoTiendaNueva"
+                                        class="form-control" placeholder="TelefonoTiendaNueva" autocomplete="off" />
                                     <label for="TelefonoTiendaNueva">Telefono</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="email" id="EmailTiendaNueva" name="EmailTiendaNueva" class="form-control" placeholder="email"
-                                        required autocomplete="off" />
+                                    <input type="email" id="EmailTiendaNueva" name="EmailTiendaNueva"
+                                        class="form-control" placeholder="email" required autocomplete="off" />
                                     <label for="EmailTiendaNueva">Email</label>
                                     <div class="valid-feedback"></div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="ImagenTiendaNueva" class="form-label">Selecciona el logo de la tienda</label>
+                                    <label for="ImagenTiendaNueva" class="form-label">Selecciona el logo de la
+                                        tienda</label>
                                     <input class="form-control" type="file" id="ImagenTiendaNueva" accept="image/*">
-                                  </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                            <button type="submit" class="btn btn-outline-primary">Registrar Tienda</button>
+                        <button type="submit" class="btn btn-outline-primary">Registrar Tienda</button>
                     </div>
                 </form>
             </div>

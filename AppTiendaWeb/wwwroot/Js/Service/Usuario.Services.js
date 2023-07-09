@@ -4,5 +4,11 @@ var UsuarioServices = {
         .done(result=> {
             return result;
         });
+    },
+    GetAll:()=> {
+        return CallApi("get","usuario/Usuarios")
+        .done(result=> {
+            return result;
+        });
     }
 };

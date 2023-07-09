@@ -39,26 +39,11 @@ namespace Presentation.AppTiendaWeb.CustomAttributes
                     else
                     {
                         ConfigAppWeb _config = context.HttpContext.RequestServices.GetRequiredService<ConfigAppWeb>();
-                        _config = SetUsuarioToConfig(response, _config);
+                        _config.Usuario = response;
                         await next();
                     }
                 }
             }
-        }
-
-        private ConfigAppWeb SetUsuarioToConfig(Usuario usuario, ConfigAppWeb _config)
-        {
-            dynamic usr = new
-            {
-                usuario.UsuarioId,
-                usuario.Nombre,
-                usuario.ApellidoPaterno,
-                usuario.ApellidoMaterno,
-                usuario.Email,
-                usuario.Telefono
-            };
-            _config.Application["Usuario"] = JsonSerializer.Serialize<dynamic>(usr);
-            return _config;
         }
     }
 }

@@ -1,0 +1,37 @@
+[
+  {
+    "MenuId": 1,
+    "View": "/Views/Vender/Nueva.html",
+    "Js": "/Js/Views/Vender/Nueva.js"
+  },
+  {
+    "MenuId": 2,
+    "View": "/Views/Vender/Reporte.html",
+    "Js": "/Js/Views/Vender/Reporte.js"
+  },
+  {
+    "MenuId": 3,
+    "View": "/Views/Tienda/Consulta.html",
+    "Js": "/Js/Views/Tienda/Consulta.js"
+  },
+  {
+    "MenuId": 4,
+    "View": "/Views/Producto/Consulta.html",
+    "Js": "/Js/Views/Producto/Consulta.js"
+  },
+  {
+    "MenuId": 5,
+    "View": "/Views/Producto/Reporte.html",
+    "Js": "/Js/Views/Producto/Reporte.js"
+  },
+  {
+    "MenuId": 6,
+    "View": "Views/Usuario/Consulta.html",
+    "Js": "Js/Views/Usuario/Consulta.js"
+  },
+  {
+    "MenuId": 7,
+    "View": "/Views/Usuario/Reporte.html",
+    "Js": "/Js/Views/Usuario/Reporte.js"
+  }
+]

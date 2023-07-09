@@ -19,7 +19,7 @@ namespace Infraestructure.Data
 
         public Repository(IUnitOfWork uow)
         {
-            _context = (AppTiendaContext)uow.Context;
+            this._context = (AppTiendaContext)uow.Context;
         }
 
         #endregion Constructor
@@ -48,12 +48,26 @@ namespace Infraestructure.Data
 
         public virtual T GetById(object id)
         {
-            return Entities.Find(id);
+            try
+            {
+                return this.Entities.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en consutla:{ex.Message}");
+            }
         }
 
         public async Task<T> GetByIdAsync(object id)
         {
-            return await Entities.FindAsync(id);
+            try
+            {
+                return await this.Entities.FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en consutla:{ex.Message}");
+            }
         }
 
         public virtual async Task Insert(T entity)
@@ -62,8 +76,7 @@ namespace Infraestructure.Data
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-
-            Entities.Add(entity);
+            this.Entities.Add(entity);
             await Task.CompletedTask;
         }
 
@@ -74,10 +87,8 @@ namespace Infraestructure.Data
                 throw new ArgumentNullException(nameof(entities));
             }
 
-            foreach (T entity in entities)
-            {
-                await Insert(entity);
-            }
+            this.Entities.AddRange(entities);
+
         }
 
         public virtual async Task Update(T entity)
@@ -87,7 +98,7 @@ namespace Infraestructure.Data
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            _context.Entry(entity).State = EntityState.Modified;
+            this._context.Entry(entity).State = EntityState.Modified;
         }
 
         public virtual async Task Update(IEnumerable<T> entities)
@@ -99,7 +110,7 @@ namespace Infraestructure.Data
 
             foreach (T item in entities)
             {
-                await Update(item);
+                await this.Update(item);
             }
         }
 
@@ -109,8 +120,7 @@ namespace Infraestructure.Data
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-
-            _context.Entry(entity).State = EntityState.Deleted;
+            this._context.Entry(entity).State = EntityState.Deleted;
 
             await Task.CompletedTask;
         }
@@ -124,7 +134,7 @@ namespace Infraestructure.Data
 
             foreach (T entity in entities)
             {
-                await Delete(entity);
+                await this.Delete(entity);
             }
         }
 
@@ -133,7 +143,41 @@ namespace Infraestructure.Data
                 Func<IQueryable<T>, Task<IOrderedQueryable<T>>> orderBy = null,
                 string includeProperties = "")
         {
-            IQueryable<T> query = Entities;
+            try
+            {
+                IQueryable<T> query = this.Entities;
+
+                if (filter != null)
+                {
+                    query = query.Where(filter);
+                }
+
+                foreach (string includeProperty in includeProperties.Split
+                    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+
+                if (orderBy != null)
+                {
+                    return await orderBy(query);
+                }
+                else
+                {
+                    return query;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en consutla:{ex.Message}");
+            }
+        }
+        public virtual async Task<IEnumerable<T>> GetLeftJoin(
+                Expression<Func<T, bool>> filter = null,
+                Func<IQueryable<T>, Task<IOrderedQueryable<T>>> orderBy = null,
+                string includeProperties = "")
+        {
+            IQueryable<T> query = this.Entities;
 
             if (filter != null)
             {
@@ -143,7 +187,7 @@ namespace Infraestructure.Data
             foreach (string includeProperty in includeProperties.Split
                 (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                query = query.Include(includeProperty);
+                query = query.Include(includeProperty).DefaultIfEmpty();
             }
 
             if (orderBy != null)
@@ -182,14 +226,14 @@ namespace Infraestructure.Data
                         );
             }
 
-            IQueryable<T> query = Entities;
+            IQueryable<T> query = this.Entities;
 
             if (filter != null)
             {
                 query = query.Where(filter);
             }
 
-            if (!string.IsNullOrEmpty(includeProperties))
+            if (!String.IsNullOrEmpty(includeProperties))
             {
                 foreach (string includeProperty in includeProperties.Split
                     (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -198,7 +242,7 @@ namespace Infraestructure.Data
                 }
             }
 
-            return ascending
+            return (ascending)
                             ?
                         query.OrderBy(orderByExpression)
                             .Skip((pageIndex - 1) * pageCount)
@@ -215,8 +259,8 @@ namespace Infraestructure.Data
             {
                 throw new ArgumentNullException(nameof(entity));
             }
+            this._context.Entry(entity).State = EntityState.Unchanged;
 
-            _context.Entry(entity).State = EntityState.Unchanged;
             await Task.CompletedTask;
         }
 
@@ -224,14 +268,14 @@ namespace Infraestructure.Data
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (!this.disposed)
             {
                 if (disposing)
                 {
                     _context.Dispose();
                 }
             }
-            disposed = true;
+            this.disposed = true;
         }
 
         public void Dispose()

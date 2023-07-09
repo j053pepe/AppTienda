@@ -27,13 +27,12 @@ namespace Presentation.AppTiendaWeb.Controllers
         [HttpPost]
         [ValidateToken]
         [Route("Register")]        
-        public async Task<ActionResult<ModelResponse<string>>> NuevaTienda([FromForm]TiendaNewModelView tiendaWeb)
+        public async Task<ActionResult> NuevaTienda([FromForm]TiendaNewModelView tiendaWeb)
         {
             ModelResponse<string> modelResponse = new ModelResponse<string>();
             try
             {
-                Usuario responseUser = JsonSerializer.Deserialize<Usuario>(_config.Application["Usuario"]);
-                Tienda entity = TiendaHelper.ViewRegisterToEntity(tiendaWeb, responseUser.UsuarioId);
+                Tienda entity = TiendaHelper.ViewRegisterToEntity(tiendaWeb, _config.Usuario.UsuarioId);
                 await _tiendaService.NuevaTienda(entity);
                 Tienda responseTiendaNueva = await _tiendaService.GetTienda();
                 if (responseTiendaNueva != null)

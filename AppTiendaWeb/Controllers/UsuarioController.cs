@@ -33,11 +33,10 @@ namespace Presentation.AppTiendaWeb.Controllers
             ModelResponse<UsuarioTiendaView> modelResponse = new();
             try
             {
-                Usuario responseUser = JsonSerializer.Deserialize<Usuario>(_config.Application["Usuario"]);
                 var responseStore = await _tiendaService.GetTienda();
                 modelResponse.Data = new UsuarioTiendaView
                 {
-                    UsuarioNombre = $"{responseUser.Nombre} {responseUser.ApellidoPaterno} {responseUser.ApellidoMaterno}",
+                    UsuarioNombre = $"{_config.Usuario.Nombre} {_config.Usuario.ApellidoPaterno} {_config.Usuario.ApellidoMaterno}",
                     StoreExists = responseStore != null,
                     TiendaNombre = responseStore?.Nombre ?? "",
                     ImageLogo = (responseStore?.TiendaDetalle?.UrlImage ?? "").Replace("wwwroot", "")
@@ -60,9 +59,8 @@ namespace Presentation.AppTiendaWeb.Controllers
             ModelResponse<List<UsuarioConsultaModelView>> response = new();
             try
             {
-                Usuario responseUser = JsonSerializer.Deserialize<Usuario>(_config.Application["Usuario"]);
                 var listUser = await _usuarioService.GetAll();
-                response.Data = listUser.Where(x => x.UsuarioId != responseUser.UsuarioId)
+                response.Data = listUser.Where(x => x.UsuarioId != _config.Usuario.UsuarioId)
                     .Select(x => UsuarioHelper.UsuarioToUsuarioConsultaModelView(x))
                     .ToList();
             }

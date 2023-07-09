@@ -6,7 +6,7 @@
         contentType: 'application/json; charset=utf-8',
         "headers": {
             "Token": localStorage.getItem("token")
-          },
+        },
         dataType: 'json',
         data: JSON.stringify(data),
         type: type,
@@ -29,7 +29,7 @@ var CallApiFormData = (type, url, data) => {
         processData: false,
         "headers": {
             "Token": localStorage.getItem("token")
-          },
+        },
         mimeType: "multipart/form-data",
         contentType: false,
         data: data,
@@ -78,3 +78,21 @@ var CallEstadoApi = {
             });
     }
 };
+
+var LoadContent = (htmlUrl, divId) => {
+    var dfd = $.Deferred();
+
+    var Api = $.ajax({
+        url: htmlUrl,
+        contentType: 'text/html; charset=utf-8',
+        type: "Get",
+    });
+
+    Api.done(function (data) {
+        dfd.resolve(data);
+    }).fail(function (data) {
+        dfd.reject(data);
+    });
+
+    return dfd.promise();
+}
