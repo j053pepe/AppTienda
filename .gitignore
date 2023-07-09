@@ -247,3 +247,16 @@ Transversal.Resolver/obj/Debug/net6.0/Transversal.Resolver.csproj.AssemblyRefere
 /.vs/AppTienda/FileContentIndex/f0bff745-033f-4066-8275-32c4e565d4cd.vsidx
 /.vs/AppTienda/v17/.wsuo
 /.vs/slnx.sqlite
+/AppTiendaWeb/bin/Release/net6.0/Core.Business.dll
+/AppTiendaWeb/bin/Release/net6.0/Core.Business.pdb
+/AppTiendaWeb/bin/Release/net6.0/Core.Contracts.dll
+/AppTiendaWeb/bin/Release/net6.0/Core.Contracts.pdb
+/AppTiendaWeb/bin/Release/net6.0/Core.Models.dll
+/AppTiendaWeb/bin/Release/net6.0/Core.Models.pdb
+/AppTiendaWeb/bin/Release/net6.0/Infraestructure.Data.dll
+/AppTiendaWeb/bin/Release/net6.0/Infraestructure.Data.pdb
+/AppTiendaWeb/bin/Release/net6.0/Presentation.AppTiendaWeb.dll
+/AppTiendaWeb/bin/Release/net6.0/Presentation.AppTiendaWeb.pdb
+/AppTiendaWeb/bin/Release/net6.0/Presentation.AppTiendaWeb.staticwebassets.runtime.json
+/AppTiendaWeb/bin/Release/net6.0/Transversal.Resolver.dll
+/AppTiendaWeb/bin/Release/net6.0/Transversal.Resolver.pdb
