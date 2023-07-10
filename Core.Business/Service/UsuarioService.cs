@@ -16,7 +16,7 @@ namespace Core.Business.Service
         }
         public async Task<bool> CheckUsersActive()
         {
-            var result = await _usuarioRepository.Get(x => x.Activo);
+            var result = await _usuarioRepository.Get(x => x.Activo.Value);
             if (result.Any())
                 return true;
             return false;
@@ -26,6 +26,14 @@ namespace Core.Business.Service
         {
             entity.UsuarioId = Guid.NewGuid().ToString();
             await _usuarioRepository.Insert(entity);
+            await _unitOfWork.SaveAsync();
+        }
+
+        public async Task UpdateStatus(string usuarioId)
+        {
+            Usuario entity = await _usuarioRepository.GetByIdAsync(usuarioId);
+            entity.Activo = !entity.Activo;
+            await _usuarioRepository.Update(entity);
             await _unitOfWork.SaveAsync();
         }
 
@@ -43,7 +51,7 @@ namespace Core.Business.Service
 
         public async Task<Usuario> GetUsuarioById(string usuarioId)
         {
-            var result =await _usuarioRepository.GetByIdAsync(usuarioId);
+            var result = await _usuarioRepository.GetByIdAsync(usuarioId);
             return result;
         }
 
@@ -52,6 +60,6 @@ namespace Core.Business.Service
             await _usuarioRepository.Update(entity);
             await _unitOfWork.SaveAsync();
             return true;
-        }        
+        }
     }
 }

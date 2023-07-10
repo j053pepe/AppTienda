@@ -31,7 +31,7 @@ namespace Presentation.AppTiendaWeb.CustomAttributes
                     context.Result = new OkObjectResult(modelResponse);
                 else
                 {
-                    if (!response.Activo)
+                    if (!response.Activo.Value)
                     {
                         modelResponse.Message = "Usuario inactivo";
                         context.Result = new OkObjectResult(modelResponse);

@@ -110,11 +110,12 @@ namespace Presentation.AppTiendaWeb.Helpers
             return new UsuarioConsultaModelView
             {
                 UsuarioId = usuario.UsuarioId,
-                Activo = usuario.Activo,
+                Activo = usuario.Activo.Value,
                 Email = usuario.Email,
                 Materno = usuario.ApellidoMaterno,
                 Nombre = usuario.Nombre,
-                Paterno = usuario.ApellidoPaterno
+                Paterno = usuario.ApellidoPaterno,
+                Telefono = usuario.Telefono,
             };
         }
         public static async Task<Usuario> TokenToUsuarioAsync(string token, IUsuarioService _usuarioService)

@@ -1,4 +1,4 @@
-﻿var CallApi = (type, url, data) => {
+﻿var CallApi = (type, url, data="") => {
     var dfd = $.Deferred();
 
     var Api = $.ajax({

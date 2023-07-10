@@ -23,7 +23,7 @@ namespace Core.Models.AppTiendaModels
         public string Email { get; set; }
         public string Password { get; set; }
         public string Telefono { get; set; }
-        public bool Activo { get; set; }
+        public bool? Activo { get; set; }
 
         public virtual UsuarioDireccion UsuarioDireccion { get; set; }
         public virtual ICollection<Producto> Producto { get; set; }

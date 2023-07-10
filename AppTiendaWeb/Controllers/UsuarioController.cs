@@ -52,7 +52,7 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
-        [ValidateToken]
+        //[ValidateToken]
         [Route("Usuarios")]
         public async Task<ActionResult> GetAllUsers()
         {
@@ -60,9 +60,47 @@ namespace Presentation.AppTiendaWeb.Controllers
             try
             {
                 var listUser = await _usuarioService.GetAll();
-                response.Data = listUser.Where(x => x.UsuarioId != _config.Usuario.UsuarioId)
+                response.Data = listUser//.Where(x => x.UsuarioId != _config.Usuario.UsuarioId)
                     .Select(x => UsuarioHelper.UsuarioToUsuarioConsultaModelView(x))
                     .ToList();
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.StatusCode = (int)EnumStatus.Error;
+            }
+
+            return Ok(response);
+        }
+
+        [HttpDelete]
+        [Route("Delete/{usuarioId}")]
+        public async Task<ActionResult> DeleteUsuario(string usuarioId)
+        {
+            ModelResponse<string> response = new();
+            try
+            {
+                await _usuarioService.UpdateStatus(usuarioId);
+                response.Data = "Usuario Desactivado";
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.StatusCode = (int)EnumStatus.Error;
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPut]
+        [Route("Activate/{usuarioId}")]
+        public async Task<ActionResult> ActivateUsuario(string usuarioId)
+        {
+            ModelResponse<string> response = new();
+            try
+            {
+                await _usuarioService.UpdateStatus(usuarioId);
+                response.Data = "Usuario Activado";
             }
             catch (Exception ex)
             {
