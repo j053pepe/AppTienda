@@ -6,7 +6,8 @@
                 <div class="d-grid">
                     <h5 class="card-title">Lista de usuarios</h5>
                     <div class="gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-outline-primary me-md-2" type="button" id="btnNuevoUsuario">Nuevo</button>
+                        <button class="btn btn-outline-primary me-md-2" type="button"
+                            id="btnNuevoUsuario">Nuevo</button>
                     </div>
                 </div>
             </div>
@@ -14,6 +15,125 @@
             <div class="row">
                 <div class="col-md-12" id="divListUser">
                 </div>
+            </div>
+        </div>
+    </div>
+</main>
+<main>
+    <div class="modal" id="modalUsuarioEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form autocomplete="off" id="frmEditUsuario">
+                    <input type="hidden" readonly id="EditUsuarioId">
+                    <input type="hidden" readonly id="EditUsuarioActivo">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Edición</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Datos personales</h5>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="UsuarioNombre" name="UsuarioNombre" class="form-control" placeholder="UsuarioNombre"
+                                        required autocomplete="off" />
+                                    <label for="UsuarioNombre">Nombre</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="UsuarioPaterno" name="UsuarioPaterno" class="form-control"
+                                        placeholder="UsuarioPaterno" required autocomplete="off" />
+                                    <label for="UsuarioPaterno">Apellido Paterno</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="UsuarioMaterno" name="UsuarioMaterno" class="form-control"
+                                        placeholder="UsuarioMaterno" required autocomplete="off" />
+                                    <label for="UsuarioMaterno">Apellido Materno</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="tel" id="UsuarioTelefono" name="UsuarioTelefono" class="form-control"
+                                        placeholder="UsuarioTelefono" autocomplete="off" />
+                                    <label for="UsuarioTelefono">Telefono</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" id="UsuarioEmail" name="UsuarioEmail" class="form-control" placeholder="UsuarioEmail"
+                                        required autocomplete="off" />
+                                    <label for="UsuarioEmail">Email</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" id="UsuarioPassword" name="UsuarioPassword" class="form-control"
+                                        placeholder="UsuarioPassword"  autocomplete="off" />
+                                    <label for="UsuarioPassword">Contraseña</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" id="UsuarioConfirmPassword" name="UsuarioConfirmPassword"
+                                        class="form-control" placeholder="UsuarioConfirmPassword" 
+                                        autocomplete="off" />
+                                    <label for="UsuarioConfirmPassword">Confirma Contraseña</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <h5>Dirección</h5>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <select id="UsuarioEstadoId" name="UsuarioEstadoId" class="form-select"
+                                        aria-label="Floating label select example">
+                                    </select>
+                                    <label for="UsuarioEstadoId">Estado</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="UsuarioCiudad" name="UsuarioCiudad" class="form-control"
+                                        placeholder="UsuarioCiudad" required autocomplete="off" />
+                                    <label for="UsuarioCiudad">Ciudad</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="number" id="UsuarioCp" name="UsuarioCp" class="form-control"
+                                        placeholder="codigo postal" required autocomplete="off" />
+                                    <label for="UsuarioCp">Codigo Postal</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="UsuarioColonia" name="UsuarioColonia" class="form-control"
+                                        placeholder="UsuarioColonia" required autocomplete="off" />
+                                    <label for="UsuarioColonia">Colonia</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="UsuarioCalle" name="UsuarioCalle" class="form-control" placeholder="UsuarioCalle"
+                                        required autocomplete="off" />
+                                    <label for="UsuarioCalle">Calle</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="UsuarioNumero" name="UsuarioNumero" class="form-control"
+                                        placeholder="UsuarioNumero" autocomplete="off" />
+                                    <label for="UsuarioNumero">Numero</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-outline-primary" id="btnEditarUsuario">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -116,6 +116,15 @@ namespace Presentation.AppTiendaWeb.Helpers
                 Nombre = usuario.Nombre,
                 Paterno = usuario.ApellidoPaterno,
                 Telefono = usuario.Telefono,
+                UsuarioDetalle = usuario.UsuarioDireccion != null ? new()
+                {
+                    Calle = usuario.UsuarioDireccion.Calle,
+                    Ciudad = usuario.UsuarioDireccion.Ciudad,
+                    Colonia = usuario.UsuarioDireccion.Colonia,
+                    Cp = usuario.UsuarioDireccion.Cp,
+                    EstadoId = usuario.UsuarioDireccion.EstadoId.Value,
+                    Numero = usuario.UsuarioDireccion.Numero
+                } : null
             };
         }
         public static async Task<Usuario> TokenToUsuarioAsync(string token, IUsuarioService _usuarioService)
@@ -123,6 +132,27 @@ namespace Presentation.AppTiendaWeb.Helpers
             var userId = AesOperationHelper.DecryptString(token);
             var responseUser = await _usuarioService.GetUsuarioById(userId);
             return responseUser;
+        }
+
+        public static Usuario UsuarioConsultaModelViewToView(UsuarioConsultaModelView model, Usuario entity)
+        {
+            entity.Activo = model.Activo;
+            entity.ApellidoMaterno = model.Materno;
+            entity.ApellidoPaterno = model.Paterno;
+            entity.Email = model.Email;
+            entity.Nombre = model.Nombre;
+            entity.Telefono = model.Telefono;
+            entity.UsuarioDireccion.Ciudad = model.UsuarioDetalle.Ciudad;
+            entity.UsuarioDireccion.Cp= model.UsuarioDetalle.Cp;
+            entity.UsuarioDireccion.Numero = model.UsuarioDetalle.Numero;
+            entity.UsuarioDireccion.Colonia = model.UsuarioDetalle.Colonia;
+            entity.UsuarioDireccion.Calle = model.UsuarioDetalle.Calle;
+            entity.UsuarioDireccion.EstadoId = model.UsuarioDetalle.EstadoId;
+
+            if(!string.IsNullOrEmpty(model.Password))
+                entity.Password = HashPassword(model.Password);
+
+            return entity;
         }
     }
 }

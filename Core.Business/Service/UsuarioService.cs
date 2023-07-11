@@ -61,5 +61,11 @@ namespace Core.Business.Service
             await _unitOfWork.SaveAsync();
             return true;
         }
+
+        public async Task<Usuario> GetUsuarioAndDirectionById(string usuarioId)
+        {
+            var result = await _usuarioRepository.Get(x=> x.UsuarioId == usuarioId, orderBy: null, includeProperties: "UsuarioDireccion");
+            return result.FirstOrDefault();
+        }
     }
 }

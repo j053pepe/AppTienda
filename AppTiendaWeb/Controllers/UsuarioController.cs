@@ -110,5 +110,25 @@ namespace Presentation.AppTiendaWeb.Controllers
 
             return Ok(response);
         }
+
+        [HttpPut]
+        [Route("Update")]
+        public async Task<ActionResult> UpdateUsuario(UsuarioConsultaModelView model)
+        {
+            ModelResponse<string> response = new();
+            try
+            {
+                var entity = await _usuarioService.GetUsuarioAndDirectionById(model.UsuarioId);
+                await _usuarioService.Update(UsuarioHelper.UsuarioConsultaModelViewToView(model, entity));
+                response.Data = "Usuario Activado";
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.StatusCode = (int)EnumStatus.Error;
+            }
+
+            return Ok(response);
+        }
     }
 }

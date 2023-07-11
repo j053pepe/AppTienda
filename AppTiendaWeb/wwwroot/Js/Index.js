@@ -7,7 +7,7 @@ $(function () {
             });
             CallJson("data/Menu.json")
                 .done(result => {
-                    this.MenuJson = result;
+                    this.MenuJson = result;                    
                     if (window.location.hash.length == 0) {
                         this.MenuClick();
                         this.AuthRegister();
@@ -30,6 +30,7 @@ $(function () {
                 });
         },
         AuthRegister() {
+            this.GetEstados('#EstadoId');
             var ModalAuth = new bootstrap.Modal(document.getElementById('modalAuth'), {
                 keyboard: false
             }),
@@ -45,20 +46,16 @@ $(function () {
                 ModalRegister.show();
             });
             $('#btnCloseRegister').hide();
+            document.getElementById('modalRegister').addEventListener('hidden.bs.modal',  function (event) {
+                    ModalAuth.show();
+            });
         },
         ModalRegister(ModalRegister, methodExtra) {
             ModalRegister.show();
-            document.getElementById('modalRegister').addEventListener('hidden.bs.modal', function (event) {
-                if (methodExtra != undefined)
-                    methodExtra.GetAll();
-                else
-                    ModalAuth.show();
-            });
-            CallEstadoApi.GetAll()
-                .done(result => {
-                    SelectComponent.FillSelect("#EstadoId", ArrayComponent.DynamicArrayToSelectArray(result, "EstadoId", "Nombre"));
-                });
-            $('#frmRegister').on('submit', function (e) {
+            $('#frmRegister').off('submit', frmRegisterSubmit);
+            $('#frmRegister').on('submit', frmRegisterSubmit);
+
+            function frmRegisterSubmit(e) {
                 e.preventDefault();
                 const formData = document.getElementById("frmRegister");
                 let frmFormData = new FormData(formData);
@@ -67,7 +64,7 @@ $(function () {
                     .done(result => {
                         if (result.statusCode == 200)
                             alertify.alert('Usuario', 'Usuario creado con exito!', function () {
-                                ModalRegister.hide();
+                                location.reload();
                                 alertify.success('Guardado');
                             });
 
@@ -77,7 +74,8 @@ $(function () {
                     .fail(result => {
                         alertify.alert('Usuario', 'Error al crear el usuario!', function () { alertify.error(result.message); });
                     });
-            });
+            }
+           
         },
         ModalLogin(ModalAuth) {
             ModalAuth.show();
@@ -161,6 +159,12 @@ $(function () {
             }
             else
                 alertify.alert('Menu', 'Dirección url incorrecta!', () => { window.location = "/index.html"; });
+        },
+        GetEstados(selectid) {
+            CallEstadoApi.GetAll()
+                .done(result => {
+                    SelectComponent.FillSelect(selectid, ArrayComponent.DynamicArrayToSelectArray(result, "EstadoId", "Nombre"));
+                });
         }
     };
 

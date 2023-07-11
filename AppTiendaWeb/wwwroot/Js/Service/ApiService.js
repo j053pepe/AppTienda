@@ -15,6 +15,7 @@
     Api.done(function (data) {
         dfd.resolve(data);
     }).fail(function (data) {
+        console.log("fail");
         dfd.reject(data);
     });
 
