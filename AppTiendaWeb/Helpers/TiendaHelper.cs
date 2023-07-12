@@ -21,6 +21,20 @@ namespace Presentation.AppTiendaWeb.Helpers
             };
         }
 
+        public static dynamic EntityToDynamic(Tienda tienda)
+        {
+            return new
+            {
+                tienda.TiendaId,
+                tienda.FechaCreacion,
+                tienda.Nombre,
+                tienda.UsuarioId,
+                tienda.TiendaDetalle.Direccion,
+                UrlImage = tienda.TiendaDetalle.UrlImage.Replace("wwwroot", ""),
+                tienda.TiendaDetalle.Descripcion
+            };
+        }
+
         public static string GuardarImagenTienda(int tiendaId, IFormFile formFile)
         {
             byte[] fileByteArray;
@@ -41,6 +55,15 @@ namespace Presentation.AppTiendaWeb.Helpers
                 }
             }
             return pathRoot.Replace("wwwroot", "");
+        }
+
+        public static Tienda ModelViewToEntity(TiendaEditModelView tiendaWeb, Tienda entity)
+        {
+            entity.Nombre = tiendaWeb.NombreTienda;
+            entity.TiendaDetalle.Descripcion = tiendaWeb.DescripcionTienda;
+            entity.TiendaDetalle.Direccion = tiendaWeb.DireccionTienda;
+
+            return entity;
         }
     }
 }

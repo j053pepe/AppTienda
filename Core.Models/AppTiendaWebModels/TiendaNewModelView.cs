@@ -17,4 +17,17 @@ namespace Core.Models.AppTiendaWebModels
         [Required]
         public IFormFile ImagenTienda { get; set; }
     }
+
+    public class TiendaEditModelView
+    {
+        [Required]
+        public string NombreTienda{ get; set; }
+
+        [Required]
+        public string DescripcionTienda{ get; set; }
+
+        [Required]
+        public string DireccionTienda { get; set; }
+        public IFormFile? ImagenTienda { get; set; }
+    }
 }

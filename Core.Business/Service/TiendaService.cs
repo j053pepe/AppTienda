@@ -21,14 +21,15 @@ namespace Core.Business.Service
         }
         public async Task<Tienda> GetTienda()
         {
-            IEnumerable<Tienda> result= new List<Tienda>();
+            IEnumerable<Tienda> result = new List<Tienda>();
             result = await _tienda.Get(filter: null, orderBy: null, includeProperties: "TiendaDetalle");
             return result.FirstOrDefault();
         }
 
         public async Task<Tienda> GetTiendaById(int id)
         {
-            return await _tienda.GetByIdAsync(id);
+            var result = await _tienda.Get(x => x.TiendaId == id, orderBy: null, includeProperties: "TiendaDetalle");
+            return result.FirstOrDefault();
         }
 
         public async Task NuevaTienda(Tienda entity)

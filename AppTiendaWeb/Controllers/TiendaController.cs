@@ -25,9 +25,9 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPost]
-        [ValidateToken]
-        [Route("Register")]        
-        public async Task<ActionResult> NuevaTienda([FromForm]TiendaNewModelView tiendaWeb)
+        //[ValidateToken]
+        [Route("Register")]
+        public async Task<ActionResult> NuevaTienda([FromForm] TiendaNewModelView tiendaWeb)
         {
             ModelResponse<string> modelResponse = new ModelResponse<string>();
             try
@@ -46,6 +46,56 @@ namespace Presentation.AppTiendaWeb.Controllers
                     modelResponse.Message = "Error al crear la tienda";
                     modelResponse.StatusCode = 500;
                 }
+            }
+            catch (Exception ex)
+            {
+                modelResponse.Message = ex.Message;
+                modelResponse.StatusCode = 500;
+            }
+            return Ok(modelResponse);
+        }
+
+        [HttpPut]
+        [Route("Actualizar/{tiendaId}")]
+        public async Task<ActionResult> Actualizar([FromForm] TiendaEditModelView tiendaWeb, int tiendaId)
+        {
+            ModelResponse<string> modelResponse = new ModelResponse<string>();
+            try
+            {
+                Tienda entity = await _tiendaService.GetTiendaById(tiendaId);               
+
+                if (entity != null)
+                {
+                    entity = TiendaHelper.ModelViewToEntity(tiendaWeb, entity);
+                    if (tiendaWeb.ImagenTienda != null)                    
+                        entity.TiendaDetalle.UrlImage = TiendaHelper.GuardarImagenTienda(entity.TiendaId, tiendaWeb.ImagenTienda);
+                    
+                    await _tiendaService.UpdateTienda(entity);
+                    modelResponse.Data = "Se genero la tienda correctamente";
+                }
+                else
+                {
+                    modelResponse.Message = "Error al crear la tienda";
+                    modelResponse.StatusCode = 500;
+                }
+            }
+            catch (Exception ex)
+            {
+                modelResponse.Message = ex.Message;
+                modelResponse.StatusCode = 500;
+            }
+            return Ok(modelResponse);
+        }
+
+        [HttpGet]
+        [Route("BasicData")]
+        public async Task<ActionResult> Get()
+        {
+            ModelResponse<dynamic> modelResponse = new ModelResponse<dynamic>();
+            try
+            {
+                Tienda responseTiendaNueva = await _tiendaService.GetTienda();
+                modelResponse.Data = TiendaHelper.EntityToDynamic(responseTiendaNueva);
             }
             catch (Exception ex)
             {

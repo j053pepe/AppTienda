@@ -1,0 +1,64 @@
+<main>
+    <div class="card">
+        <h5 class="card-header">Tienda</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="d-grid">
+                    <h5 class="card-title">Datos de tienda</h5>
+                </div>
+            </div>
+            <form id="frmTiendaEdit">
+                <input type="hidden" id="TiendaId" readonly>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="NombreTienda" name="NombreTienda" class="form-control"
+                                placeholder="NombreTienda" required autocomplete="off" />
+                            <label for="NombreTienda">Nombre de tienda</label>
+                            <div class="valid-feedback"></div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea rows="2" type="text" id="DescripcionTienda" name="DescripcionTienda" style="height: 50px"
+                                class="form-control" placeholder="DescripcionTienda" required
+                                autocomplete="off"></textarea>
+                            <label for="DescripcionTienda">Descripción de la tienda</label>
+                            <div class="valid-feedback"></div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea rows="4" id="DireccionTienda" name="DireccionTienda" style="height: 100px"
+                                class="form-control" placeholder="DireccionTienda" required
+                                autocomplete="off"></textarea>
+                            <label for="DireccionTienda">Direccion</label>
+                            <div class="valid-feedback"></div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="tel" id="TelefonoTienda" name="TelefonoTienda" class="form-control"
+                                placeholder="TelefonoTienda" autocomplete="off" />
+                            <label for="TelefonoTienda">Telefono</label>
+                            <div class="valid-feedback"></div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" id="EmailTienda" name="EmailTienda" class="form-control"
+                                placeholder="email" autocomplete="off" />
+                            <label for="EmailTienda">Email</label>
+                            <div class="valid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-6">                        
+                        <div class="mb-3">
+                            <label for="ImagenTienda" class="form-label">Selecciona el logo de la
+                                tienda</label>
+                            <input class="form-control" type="file" id="ImagenTienda" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <img  class="rounded mx-auto d-block" alt="imgTienda" id="imgPreview" width="300px" height="300px">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
