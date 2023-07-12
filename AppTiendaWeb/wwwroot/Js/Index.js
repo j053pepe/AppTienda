@@ -7,9 +7,10 @@ $(function () {
             });
             CallJson("data/Menu.json")
                 .done(result => {
-                    this.MenuJson = result;                    
-                    if (window.location.hash.length == 0) {
-                        this.MenuClick();
+                    console.log("Menu.json");
+                    this.MenuJson = result;                
+                    this.MenuClick();    
+                    if (window.location.hash.length == 0) {                        
                         this.AuthRegister();
                         if (localStorage.getItem("token") == 'null' || localStorage.getItem("token") == null)
                             this.ModalLogin(ModalAuth);
@@ -24,7 +25,7 @@ $(function () {
                                         this.DataUser();
                                 });*/
                     } else {
-                        this.EventMenu(parseInt(window.location.hash.split('#')[1]));
+                        main.EventMenu(parseInt(window.location.hash.split('#')[1]));
                         //this.DataUser();
                     }
                 });
@@ -143,12 +144,14 @@ $(function () {
 
             itemMenu.forEach(x => {
                 x.addEventListener('click', event => {
-                    this.EventMenu(parseInt($(x)[0].href.split('#')[1]));
+                    main.EventMenu(parseInt($(x)[0].href.split('#')[1]));
                 });
             });
         },
         MenuJson: [{ MenuId: 0, View: "", Js: "" }],
         EventMenu(menuId) {
+            console.log("click", menuId);
+            $("#divDynamic").empty();
             let indexMenu = this.MenuJson.findIndex(x => x.MenuId == menuId);
             if (indexMenu != -1) {
                 LoadContent(this.MenuJson[indexMenu].View + `?${new Date().getTime()}`)
