@@ -53,7 +53,7 @@ namespace Infraestructure.Data.StoreDbMapping
                     .HasColumnType("bit")
                     .HasDefaultValueSql("No");
 
-                entity.Property(e => e.Codigo).HasDefaultValueSql("0");
+                entity.Property(e => e.Codigo).HasMaxLength(255);
 
                 entity.Property(e => e.Nombre).HasMaxLength(255);
 

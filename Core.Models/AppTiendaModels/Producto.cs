@@ -17,7 +17,7 @@ namespace Core.Models.AppTiendaModels
         public int? ProductoId { get; set; }
         public string Nombre { get; set; }
         public decimal? Precio { get; set; }
-        public int? Codigo { get; set; }
+        public string? Codigo { get; set; }
         public DateTime? Fecha { get; set; }
         public int? Stock { get; set; }
         public string UsuarioId { get; set; }

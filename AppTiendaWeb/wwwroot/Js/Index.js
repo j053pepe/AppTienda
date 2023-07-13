@@ -7,7 +7,6 @@ $(function () {
             });
             CallJson("data/Menu.json")
                 .done(result => {
-                    console.log("Menu.json");
                     this.MenuJson = result;                
                     this.MenuClick();    
                     if (window.location.hash.length == 0) {                        
@@ -150,7 +149,6 @@ $(function () {
         },
         MenuJson: [{ MenuId: 0, View: "", Js: "" }],
         EventMenu(menuId) {
-            console.log("click", menuId);
             $("#divDynamic").empty();
             let indexMenu = this.MenuJson.findIndex(x => x.MenuId == menuId);
             if (indexMenu != -1) {

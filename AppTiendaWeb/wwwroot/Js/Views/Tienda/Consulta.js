@@ -1,7 +1,7 @@
 var TiendaConsulta = {
     init: () => {
         TiendaConsulta.GetTienda();
-        $('#ImagenTienda').on("change", TiendaConsulta.ReadFile);
+        ImageComponent.AddChangeWithPreview('#ImagenTienda','#imgPreview');
         $('#frmTiendaEdit').on('submit', TiendaConsulta.UpdateTienda);
     },
     GetTienda: () => {
@@ -18,17 +18,6 @@ var TiendaConsulta = {
         //$('#TelefonoTienda').val(result.telefono);
         //$('#EmailTienda').val(result.email);
         $('#imgPreview').attr("src", result.urlImage);
-    },
-    ReadFile: () => {
-        let file = $('#ImagenTienda')[0].files;
-        if (!file || !file[0]) return;
-
-        const FR = new FileReader();
-        FR.addEventListener("load", function (evt) {
-            $('#imgPreview').attr("src", evt.target.result);
-        });
-
-        FR.readAsDataURL(file[0]);
     },
     UpdateTienda: (e) => {
         e.preventDefault();

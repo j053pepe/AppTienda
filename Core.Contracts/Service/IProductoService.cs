@@ -9,10 +9,10 @@ namespace Core.Contracts.Service
 {
     public interface IProductoService
     {
-        public Task NuevoProducto(Producto entity);
-        public Task UpdateProducto(Producto entity);
-        public Task DeleteProducto(int productoId);
-        public Task<Producto> GetProductoById(int productoId);
-        public Task<List<Producto>> GetAllProductsByTienda(int tiendaId);
+        public Task Nuevo(Producto entity);
+        public Task Update(Producto entity);
+        public Task UpdateStatus(int productoId);
+        public Task<Producto> GetById(int productoId);
+        public Task<List<Producto>> GetAllProducts();
     }
 }

@@ -1,4 +1,6 @@
-﻿using Core.Contracts.Service;
+﻿using Core.Contracts.Data;
+using Core.Contracts.Repositories;
+using Core.Contracts.Service;
 using Core.Models.AppTiendaModels;
 using System;
 using System.Collections.Generic;
@@ -10,29 +12,42 @@ namespace Core.Business.Service
 {
     public class ProductoService : IProductoService
     {
-        public Task DeleteProducto(int productoId)
+        private readonly IProductoRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
+        public ProductoService(IProductoRepository repository, IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _unitOfWork = unitOfWork;
+        }
+        public async Task UpdateStatus(int productoId)
+        {
+            var product = await _repository.GetByIdAsync(productoId);
+            product.Activo = !product.Activo;
+            await _repository.Update(product);
+            await _unitOfWork.SaveAsync();
         }
 
-        public Task<List<Producto>> GetAllProductsByTienda(int tiendaId)
+        public async Task<List<Producto>> GetAllProducts()
         {
-            throw new NotImplementedException();
+            var list =  await _repository.Get(filter: null, orderBy: null, includeProperties: "ProductoDetalle");
+            return list.ToList();
         }
 
-        public Task<Producto> GetProductoById(int productoId)
+        public async Task<Producto> GetById(int productoId)
         {
-            throw new NotImplementedException();
+            return await _repository.GetByIdAsync(productoId);
         }
 
-        public Task NuevoProducto(Producto entity)
+        public async Task Nuevo(Producto entity)
         {
-            throw new NotImplementedException();
+            await _repository.Insert(entity);
+            await _unitOfWork.SaveAsync();
         }
 
-        public Task UpdateProducto(Producto entity)
+        public async Task Update(Producto entity)
         {
-            throw new NotImplementedException();
+            await _repository.Update(entity);
+            await _unitOfWork.SaveAsync();
         }
     }
 }
