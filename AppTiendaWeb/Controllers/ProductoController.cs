@@ -5,6 +5,8 @@ using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.AppTiendaWeb.Helpers;
 using Core.Models.AppTiendaWebModels;
+using Presentation.AppTiendaWeb.CustomAttributes;
+using Core.Business;
 
 namespace Presentation.AppTiendaWeb.Controllers
 {
@@ -13,9 +15,11 @@ namespace Presentation.AppTiendaWeb.Controllers
     public class ProductoController : ControllerBase
     {
         readonly IProductoService _productoService;
-        public ProductoController(IProductoService productoService)
+        private readonly ConfigAppWeb _config;
+        public ProductoController(IProductoService productoService, ConfigAppWeb config)
         {
             _productoService = productoService;
+            _config = config;
         }
 
         [HttpGet]
@@ -36,12 +40,24 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateToken]
         public async Task<ActionResult> Post([FromForm] ProductoModelView model)
         {
-            ModelResponse<string> modelResponse = new ();
+            ModelResponse<string> modelResponse = new();
             try
             {
-                
+                // Agregar codigo de buscar codigo de producto _productoService.ExistCodigo();
+                Producto entity = ProductoHelper.EntityToModelView(model);
+                entity.UsuarioId = _config.Usuario.UsuarioId;
+                await _productoService.Nuevo(entity);
+
+                if (entity.ProductoId != null && model.ImagenProducto != null)
+                {
+                    entity.ProductoDetalle.UrlImage = ProductoHelper.GuardarImagenTienda(entity.ProductoId.Value, model.ImagenProducto);
+                    await _productoService.Update(entity);
+                }
+
+                modelResponse.Data = "Producto guardado correctamente.";
             }
             catch (Exception ex)
             {
@@ -57,7 +73,22 @@ namespace Presentation.AppTiendaWeb.Controllers
             ModelResponse<string> modelResponse = new();
             try
             {
+                Producto entity = await _productoService.GetById(model.ProductId.Value);
+                entity.Precio = model.Precio;
+                entity.Codigo = model.Codigo;
+                entity.Nombre = model.Nombre;
+                entity.Stock = model.Stock;
+                entity.ProductoDetalle.Descripcion = model.Descripcion;
 
+                await _productoService.Update(entity);
+
+                if (model.ImagenProducto != null)
+                {
+                    entity.ProductoDetalle.UrlImage = ProductoHelper.GuardarImagenTienda(entity.ProductoId.Value, model.ImagenProducto);
+                    await _productoService.Update(entity);
+                }
+
+                modelResponse.Data = "Producto actualizado correctamente.";
             }
             catch (Exception ex)
             {

@@ -1,4 +1,4 @@
-﻿var CallApi = (type, url, data="") => {
+﻿var CallApi = (type, url, data = "") => {
     var dfd = $.Deferred();
 
     var Api = $.ajax({
@@ -8,7 +8,7 @@
             "Token": localStorage.getItem("token")
         },
         dataType: 'json',
-        data: JSON.stringify(data),
+        data: data == "" ? "" : JSON.stringify(data),
         type: type,
     });
 

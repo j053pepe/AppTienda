@@ -22,7 +22,7 @@ namespace Core.Models.AppTiendaWebModels
         public string Codigo { get;set; }
 
         [Required]
-        public decimal Stock { get; set; }
+        public int Stock { get; set; }
 
         [Required]
         public bool Status { get; set; }
@@ -32,7 +32,7 @@ namespace Core.Models.AppTiendaWebModels
 
         public IFormFile? ImagenProducto { get; set; }
 
-        public string UrlImagen { get; set; }
+        public string? UrlImagen { get; set; }
 
     }
 }

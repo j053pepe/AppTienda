@@ -1,7 +1,7 @@
 var TiendaConsulta = {
     init: () => {
         TiendaConsulta.GetTienda();
-        ImageComponent.AddChangeWithPreview('#ImagenTienda','#imgPreview');
+        ImageComponent.AddChangeWithPreview('#ImagenTienda', '#imgPreview');
         $('#frmTiendaEdit').on('submit', TiendaConsulta.UpdateTienda);
     },
     GetTienda: () => {
@@ -25,10 +25,10 @@ var TiendaConsulta = {
         formData.append("NombreTienda", $('#NombreTienda').val());
         formData.append("DescripcionTienda", $('#DescripcionTienda').val());
         formData.append("DireccionTienda", $('#DireccionTienda').val());
-        if ($('#ImagenTienda')[0].files.length>0)
+        if ($('#ImagenTienda')[0].files.length > 0)
             formData.append("ImagenTienda", $('#ImagenTienda')[0].files[0]);
 
-            TiendaServices.UpdateTienda(formData, $('#TiendaId').val())
+        TiendaServices.UpdateTienda(formData, $('#TiendaId').val())
             .done(result => {
                 alertify.alert('Tienda', 'Tienda Actualizada!', () => { location.reload(); });
             });
