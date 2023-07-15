@@ -23,6 +23,7 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
+        [Route("")]
         public async Task<ActionResult> Get()
         {
             ModelResponse<List<ProductoModelView>> modelResponse = new ModelResponse<List<ProductoModelView>>();
@@ -39,25 +40,45 @@ namespace Presentation.AppTiendaWeb.Controllers
             return Ok(modelResponse);
         }
 
+        [HttpGet]
+        [Route("{Query}")]
+        public async Task<ActionResult> Get(string Query)
+        {
+            List<string> ResultFilter = new List<string>();
+            List<Producto> products = await _productoService.GetByFilter(Query);
+            ResultFilter = products.Select(x => $"{x.Nombre} | {x.Codigo} | " + String.Format("{0:c}", x.Precio.Value)).ToList();
+
+            return Ok(ResultFilter);
+        }
+
         [HttpPost]
         [ValidateToken]
+        [Route("")]
         public async Task<ActionResult> Post([FromForm] ProductoModelView model)
         {
             ModelResponse<string> modelResponse = new();
             try
             {
-                // Agregar codigo de buscar codigo de producto _productoService.ExistCodigo();
-                Producto entity = ProductoHelper.EntityToModelView(model);
-                entity.UsuarioId = _config.Usuario.UsuarioId;
-                await _productoService.Nuevo(entity);
-
-                if (entity.ProductoId != null && model.ImagenProducto != null)
+                Producto entityCode = await _productoService.GetByCodigo(model.Codigo);
+                if (entityCode == null)
                 {
-                    entity.ProductoDetalle.UrlImage = ProductoHelper.GuardarImagenTienda(entity.ProductoId.Value, model.ImagenProducto);
-                    await _productoService.Update(entity);
-                }
+                    Producto entity = ProductoHelper.EntityToModelView(model);
+                    entity.UsuarioId = _config.Usuario.UsuarioId;
+                    await _productoService.Nuevo(entity);
 
-                modelResponse.Data = "Producto guardado correctamente.";
+                    if (entity.ProductoId != null && model.ImagenProducto != null)
+                    {
+                        entity.ProductoDetalle.UrlImage = ProductoHelper.GuardarImagenTienda(entity.ProductoId.Value, model.ImagenProducto);
+                        await _productoService.Update(entity);
+                    }
+
+                    modelResponse.Data = "Producto guardado correctamente.";
+                }
+                else
+                {
+                    modelResponse.StatusCode = 500;
+                    modelResponse.Message = "Codigo ingresado ya existe.";
+                }
             }
             catch (Exception ex)
             {
@@ -68,12 +89,13 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPut]
+        [Route("")]
         public async Task<ActionResult> Put([FromForm] ProductoModelView model)
         {
             ModelResponse<string> modelResponse = new();
             try
             {
-                Producto entity = await _productoService.GetById(model.ProductId.Value);
+                Producto entity = await _productoService.GetById(model.ProductId.Value, "ProductoDetalle");
                 entity.Precio = model.Precio;
                 entity.Codigo = model.Codigo;
                 entity.Nombre = model.Nombre;
@@ -99,13 +121,23 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateStatus/{productoId}")]
+        [Route("{productoId}")]
         public async Task<ActionResult> ChangeStatus(int productoId)
         {
             ModelResponse<string> modelResponse = new();
             try
             {
-
+                Producto entity = await _productoService.GetById(productoId, string.Empty);
+                if (entity != null)
+                {
+                    entity.Activo = !entity.Activo;
+                    await _productoService.Update(entity);
+                }
+                else
+                {
+                    modelResponse.Message = "Producto no encontrado";
+                    modelResponse.StatusCode = 500;
+                }
             }
             catch (Exception ex)
             {

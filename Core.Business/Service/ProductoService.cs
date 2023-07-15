@@ -33,9 +33,10 @@ namespace Core.Business.Service
             return list.ToList();
         }
 
-        public async Task<Producto> GetById(int productoId)
+        public async Task<Producto> GetById(int productoId, string properties)
         {
-            return await _repository.GetByIdAsync(productoId);
+            var list = await _repository.Get(x=> x.ProductoId==productoId, orderBy: null, includeProperties: properties);
+            return list.FirstOrDefault();
         }
 
         public async Task Nuevo(Producto entity)
@@ -48,6 +49,18 @@ namespace Core.Business.Service
         {
             await _repository.Update(entity);
             await _unitOfWork.SaveAsync();
+        }
+
+        public async Task<Producto> GetByCodigo(string codigo)
+        {
+            var list = await _repository.Get(x => x.Codigo == codigo, orderBy: null, includeProperties: "ProductoDetalle");
+            return list.FirstOrDefault();
+        }
+
+        public async Task<List<Producto>> GetByFilter(string query)
+        {
+            var list = await _repository.Get(x => x.Activo.Value && (x.Codigo.ToLower().Contains(query.ToLower()) || x.Nombre.ToLower().Contains(query.ToLower())));
+            return list.ToList();
         }
     }
 }

@@ -21,8 +21,20 @@ var ProductoServices = {
         });
     },
     Update(formData, id){
-        return CallApiFormData("put", "Tienda/" + id, formData)
+        return CallApiFormData("put", "Producto/" + id, formData)
         .done(result => {
+            return result.data;
+        })
+        .fail(result => {
+            alertify.alert('Producto', 'Error al actualizar el producto!', function () {
+                alertify.error(result.message == undefined ? `${result.status}-${result.statusText}` : result.message);
+            });
+        });
+    },
+    UpdateStatus(id)
+    {
+        return CallApi("put",`Producto/${id}`)
+        .done(result=> {
             return result.data;
         })
         .fail(result => {
