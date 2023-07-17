@@ -208,10 +208,10 @@ namespace Infraestructure.Data.StoreDbMapping
                 entity.HasIndex(e => e.VentaDetalleId)
                     .HasName("VentaDetalleId");
 
+                entity.Property(e => e.VentaDetalleId).HasColumnType("counter");
+
                 entity.HasIndex(e => e.VentaId)
                     .HasName("VentaId");
-
-                entity.Property(e => e.VentaDetalleId).ValueGeneratedNever();
 
                 entity.Property(e => e.Cantidad).HasDefaultValueSql("0");
 

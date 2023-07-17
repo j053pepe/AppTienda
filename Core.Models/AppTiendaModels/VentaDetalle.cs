@@ -13,7 +13,7 @@ namespace Core.Models.AppTiendaModels
         public int? VentaId { get; set; }
         public int? ProductoId { get; set; }
         public decimal? Precio { get; set; }
-        public int? Cantidad { get; set; }
+        public decimal? Cantidad { get; set; }
         public decimal? Total { get; set; }
 
         public virtual Producto Producto { get; set; }

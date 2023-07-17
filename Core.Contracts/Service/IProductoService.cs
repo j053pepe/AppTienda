@@ -16,5 +16,6 @@ namespace Core.Contracts.Service
         public Task<List<Producto>> GetAllProducts();
         public Task<Producto> GetByCodigo(string codigo);
         public Task<List<Producto>> GetByFilter(string query);
+        public Task UpdateStock(int? productoId, decimal? cantidad);
     }
 }

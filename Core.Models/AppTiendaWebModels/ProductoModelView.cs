@@ -22,7 +22,7 @@ namespace Core.Models.AppTiendaWebModels
         public string Codigo { get;set; }
 
         [Required]
-        public int Stock { get; set; }
+        public decimal Stock { get; set; }
 
         [Required]
         public bool Status { get; set; }
@@ -34,5 +34,15 @@ namespace Core.Models.AppTiendaWebModels
 
         public string? UrlImagen { get; set; }
 
+    }
+
+    public class ProductQuery
+    {
+        public List<ProductList> Result { get; set; }
+    }
+    public class ProductList
+    {
+        public string Value { get; set; }
+        public string Text { get; set; }
     }
 }

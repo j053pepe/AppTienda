@@ -62,5 +62,13 @@ namespace Core.Business.Service
             var list = await _repository.Get(x => x.Activo.Value && (x.Codigo.ToLower().Contains(query.ToLower()) || x.Nombre.ToLower().Contains(query.ToLower())));
             return list.ToList();
         }
+
+        public async Task UpdateStock(int? productoId, decimal? cantidad)
+        {
+            Producto entity = await _repository.GetByIdAsync(productoId);
+            entity.Stock += cantidad.Value;
+            await _repository.Update(entity);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }

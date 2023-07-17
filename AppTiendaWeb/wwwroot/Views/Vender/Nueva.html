@@ -2,59 +2,70 @@
     <div class="card">
         <h5 class="card-header">Venta</h5>
         <div class="card-body">
-            <div class="row g-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="NombreProducto" name="NombreProducto" class="form-control"
-                            placeholder="NombreProducto" required autocomplete="off" 
-                            data-filterDelay="5000"
-                            data-filterMinChars="5"
-                            data-filter="/api/producto/#QUERY#" />
-                        <label for="NombreProducto">Nombre Producto | Codigo Producto</label>
+            <form id="frmVenta" method="post">
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input type="text" id="NombreProducto" name="NombreProducto" class="form-control"
+                                placeholder="NombreProducto" autocomplete="off" data-filterDelay="5000"
+                                data-filterMinChars="5" data-filter="/api/producto/Query?q=#QUERY#" />
+                            <label for="NombreProducto">Nombre Producto | Codigo Producto</label>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input type="number" id="CantidadProducto" name="CantidadProducto" step="0.1"
+                                class="form-control" placeholder="CantidadProducto" autocomplete="off" />
+                            <label for="CantidadProducto">Número de productos</label>
+                            <div class="valid-feedback"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="CantidadProducto" name="CantidadProducto" class="form-control"
-                            placeholder="CantidadProducto" required autocomplete="off" />
-                        <label for="CantidadProducto">Número de productos</label>
-                        <div class="valid-feedback"></div>
+                <div class="row">&nbsp;</div>
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            </br>
+                            <button type="button" class="btn btn-outline-info" style="height:50px;"
+                                id="btnNuevoProducto">Agregar
+                                Articulo</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">&nbsp;</div>
-            <div class="row g-2">
-                <div class="col-md">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        </br>
-                        <button class="btn btn-outline-primary btn-lg" style="height:50px;"
-                            id="btnNuevoProducto">Agregar
-                            Articulo</button>
+                <div class="row">
+                    <div class="col align-self-start">
+                        <h5 class="card-title">Productos</h5>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col align-self-start">
-                    <h5 class="card-title">Productos</h5>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped table-hover border-primary" id="tblVentaDetalle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre | Codigo</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="h5" colspan="3">Total</td>
+                                    <td class="h5" id="lblTotalVenta">$0.00</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-outline-primary">Vender</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <table class="table table-striped table-hover border-primary" id="tblVentaDetalle">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre | Codigo</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-12"></div>
-            </div>
+            </form>
         </div>
 </main>

@@ -41,12 +41,15 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
-        [Route("{Query}")]
-        public async Task<ActionResult> Get(string Query)
+        [Route("Query/")]
+        public async Task<ActionResult> Get([FromQuery] string q)
         {
             List<string> ResultFilter = new List<string>();
-            List<Producto> products = await _productoService.GetByFilter(Query);
-            ResultFilter = products.Select(x => $"{x.Nombre} | {x.Codigo} | " + String.Format("{0:c}", x.Precio.Value)).ToList();
+            List<Producto> products = await _productoService.GetByFilter(q);
+            ResultFilter = products
+                .Select(x =>
+                $"{x.Nombre} | {x.Codigo} | " + String.Format("{0:c}", x.Precio.Value))
+                .ToList();
 
             return Ok(ResultFilter);
         }
