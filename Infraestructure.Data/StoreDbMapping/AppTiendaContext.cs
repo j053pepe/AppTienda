@@ -29,14 +29,6 @@ namespace Infraestructure.Data.StoreDbMapping
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaDetalle> VentaDetalle { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseJet("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\Data\\DbTiendaWeb.accdb;Jet OLEDB:Database Password=Abc1234$;");
-        //    }
-        //}
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Producto>(entity =>
@@ -208,10 +200,10 @@ namespace Infraestructure.Data.StoreDbMapping
                 entity.HasIndex(e => e.VentaDetalleId)
                     .HasName("VentaDetalleId");
 
-                entity.Property(e => e.VentaDetalleId).HasColumnType("counter");
-
                 entity.HasIndex(e => e.VentaId)
                     .HasName("VentaId");
+
+                entity.Property(e => e.VentaDetalleId).HasColumnType("counter");
 
                 entity.Property(e => e.Cantidad).HasDefaultValueSql("0");
 
