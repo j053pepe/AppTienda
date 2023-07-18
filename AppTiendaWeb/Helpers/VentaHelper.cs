@@ -51,5 +51,26 @@ namespace Presentation.AppTiendaWeb.Helpers
 
             return entity;
         }
+
+        public static VentaReporteModelView EntityToReportModel(Venta x)
+        {
+            return new VentaReporteModelView()
+            {
+                Cantidad = x.NumeroPoductos.Value,
+                FechaVenta = x.Fecha.Value.ToString("dd/MM/yyyy h:mm:ss tt"),
+                NombreUsuario = $"{x.Usuario.Nombre} {x.Usuario.ApellidoPaterno} {x.Usuario.ApellidoMaterno}",
+                Status = x.Activo.Value,
+                Total = x.Total.Value,
+                VentaId = x.VentaId.Value,
+                Productos = x.VentaDetalle.Select(z => new VentaReporteDetalleModelView
+                {
+                    Cantidad = z.Cantidad.Value,
+                    NombreCodigo = $"{z.Producto.Nombre} | {z.Producto.Codigo}",
+                    PrecioUnitario = z.Precio.Value,
+                    Total = z.Total.Value,
+                    VentaDetalleId = z.VentaDetalleId
+                }).ToList()
+            };
+        }
     }
 }

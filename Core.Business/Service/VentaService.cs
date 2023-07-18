@@ -25,9 +25,10 @@ namespace Core.Business.Service
             throw new NotImplementedException();
         }
 
-        public Task<List<Venta>> GetAllVentaByTienda(int tiendaId)
+        public async Task<List<Venta>> GetAllVenta()
         {
-            throw new NotImplementedException();
+            var result = await _ventaRepository.Get(filter: null, orderBy: null, includeProperties: "VentaDetalle,VentaDetalle.Producto,Usuario");
+            return result.ToList();
         }
 
         public Task<List<Venta>> GetAllVentasByUsuario(string usuarioId)

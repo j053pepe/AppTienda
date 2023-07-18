@@ -13,7 +13,7 @@ namespace Core.Contracts.Service
         public Task UpdateVenta(Venta entity);
         public Task DeleteVenta(int ventaId);
         public Task<Venta> GetVentaById(int ventaId);
-        public Task<List<Venta>> GetAllVentaByTienda(int tiendaId);
+        public Task<List<Venta>> GetAllVenta();
         public Task<List<Venta>> GetAllVentasByUsuario(string usuarioId);
     }
 }

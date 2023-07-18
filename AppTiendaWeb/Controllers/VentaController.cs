@@ -51,5 +51,26 @@ namespace Presentation.AppTiendaWeb.Controllers
             }
             return Ok(modelResponse);
         }
+
+        [HttpGet]
+        [Route("Reporte")]
+        public async Task<ActionResult> GetReporte()
+        {
+            ModelResponse<List<VentaReporteModelView>> modelResponse = new();
+            try
+            {
+                List<Venta> Ventas = await _ventaService.GetAllVenta();
+                if (Ventas.Any())
+                {
+                    modelResponse.Data= Ventas.Select(x=> (VentaReporteModelView) VentaHelper.EntityToReportModel(x)).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                modelResponse.Message = ex.Message;
+                modelResponse.StatusCode = 500;
+            }
+            return Ok(modelResponse);
+        }
     }
 }
