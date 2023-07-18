@@ -15,10 +15,10 @@ namespace Core.Models.AppTiendaModels
         }
 
         public int? VentaId { get; set; }
-        public decimal? Total { get; set; }
-        public int? NumeroPoductos { get; set; }
+        public decimal Total { get; set; }
+        public int NumeroPoductos { get; set; }
         public string UsuarioId { get; set; }
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public bool? Activo { get; set; }
 
         public virtual Usuario Usuario { get; set; }

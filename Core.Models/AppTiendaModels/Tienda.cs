@@ -9,9 +9,9 @@ namespace Core.Models.AppTiendaModels
 {
     public partial class Tienda
     {
-        public int? TiendaId { get; set; }
+        public int TiendaId { get; set; }
         public string Nombre { get; set; }
-        public DateTime? FechaCreacion { get; set; }
+        public DateTime FechaCreacion { get; set; }
         public string UsuarioId { get; set; }
 
         public virtual Usuario Usuario { get; set; }

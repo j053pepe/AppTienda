@@ -48,7 +48,7 @@ namespace Presentation.AppTiendaWeb.Controllers
             List<Producto> products = await _productoService.GetByFilter(q);
             ResultFilter = products
                 .Select(x =>
-                $"{x.Nombre} | {x.Codigo} | " + String.Format("{0:c}", x.Precio.Value))
+                $"{x.Nombre} | {x.Codigo} | " + String.Format("{0:c}", x.Precio))
                 .ToList();
 
             return Ok(ResultFilter);
@@ -71,7 +71,7 @@ namespace Presentation.AppTiendaWeb.Controllers
 
                     if (entity.ProductoId != null && model.ImagenProducto != null)
                     {
-                        entity.ProductoDetalle.UrlImage = ProductoHelper.GuardarImagenTienda(entity.ProductoId.Value, model.ImagenProducto);
+                        entity.ProductoDetalle.UrlImage = ProductoHelper.GuardarImagenTienda(entity.ProductoId, model.ImagenProducto);
                         await _productoService.Update(entity);
                     }
 
@@ -109,7 +109,7 @@ namespace Presentation.AppTiendaWeb.Controllers
 
                 if (model.ImagenProducto != null)
                 {
-                    entity.ProductoDetalle.UrlImage = ProductoHelper.GuardarImagenTienda(entity.ProductoId.Value, model.ImagenProducto);
+                    entity.ProductoDetalle.UrlImage = ProductoHelper.GuardarImagenTienda(entity.ProductoId, model.ImagenProducto);
                     await _productoService.Update(entity);
                 }
 

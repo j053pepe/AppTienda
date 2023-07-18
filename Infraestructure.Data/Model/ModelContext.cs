@@ -7,15 +7,15 @@ using Microsoft.EntityFrameworkCore.Metadata;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace Infraestructure.Data.StoreDbMapping
+namespace Infraestructure.Data.Model
 {
-    public partial class AppTiendaContext : DbContext
+    public partial class ModelContext : DbContext
     {
-        public AppTiendaContext()
+        public ModelContext()
         {
         }
 
-        public AppTiendaContext(DbContextOptions<AppTiendaContext> options)
+        public ModelContext(DbContextOptions<ModelContext> options)
             : base(options)
         {
         }
@@ -28,6 +28,15 @@ namespace Infraestructure.Data.StoreDbMapping
         public virtual DbSet<UsuarioDireccion> UsuarioDireccion { get; set; }
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaDetalle> VentaDetalle { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseJet("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=G:/MSAccess/DbTiendaWebNP.accdb;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

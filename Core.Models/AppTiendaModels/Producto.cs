@@ -14,12 +14,12 @@ namespace Core.Models.AppTiendaModels
             VentaDetalle = new HashSet<VentaDetalle>();
         }
 
-        public int? ProductoId { get; set; }
+        public int ProductoId { get; set; }
         public string Nombre { get; set; }
-        public decimal? Precio { get; set; }
+        public decimal Precio { get; set; }
         public string Codigo { get; set; }
-        public DateTime? Fecha { get; set; }
-        public int? Stock { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal Stock { get; set; }
         public string UsuarioId { get; set; }
         public bool? Activo { get; set; }
 

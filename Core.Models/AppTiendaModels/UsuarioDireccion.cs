@@ -15,7 +15,7 @@ namespace Core.Models.AppTiendaModels
         public string Colonia { get; set; }
         public string Cp { get; set; }
         public string Ciudad { get; set; }
-        public int? EstadoId { get; set; }
+        public int EstadoId { get; set; }
 
         public virtual Usuario Usuario { get; set; }
     }

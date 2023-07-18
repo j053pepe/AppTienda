@@ -12,10 +12,10 @@ namespace Presentation.AppTiendaWeb.Helpers
                 Codigo = model.Codigo,
                 Descripcion = model.ProductoDetalle.Descripcion,
                 Nombre = model.Nombre,
-                Precio = model.Precio.Value,
-                ProductId = model.ProductoId.Value,
+                Precio = model.Precio,
+                ProductId = model.ProductoId,
                 Status = model.Activo.Value,
-                Stock = model.Stock.Value,
+                Stock = model.Stock,
                 UrlImagen = model.ProductoDetalle.UrlImage
             };
         }

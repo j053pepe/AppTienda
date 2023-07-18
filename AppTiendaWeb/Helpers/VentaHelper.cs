@@ -56,18 +56,18 @@ namespace Presentation.AppTiendaWeb.Helpers
         {
             return new VentaReporteModelView()
             {
-                Cantidad = x.NumeroPoductos.Value,
-                FechaVenta = x.Fecha.Value.ToString("dd/MM/yyyy h:mm:ss tt"),
+                Cantidad = x.NumeroPoductos,
+                FechaVenta = x.Fecha.ToString("dd/MM/yyyy h:mm:ss tt"),
                 NombreUsuario = $"{x.Usuario.Nombre} {x.Usuario.ApellidoPaterno} {x.Usuario.ApellidoMaterno}",
                 Status = x.Activo.Value,
-                Total = x.Total.Value,
+                Total = x.Total,
                 VentaId = x.VentaId.Value,
                 Productos = x.VentaDetalle.Select(z => new VentaReporteDetalleModelView
                 {
-                    Cantidad = z.Cantidad.Value,
+                    Cantidad = z.Cantidad,
                     NombreCodigo = $"{z.Producto.Nombre} | {z.Producto.Codigo}",
-                    PrecioUnitario = z.Precio.Value,
-                    Total = z.Total.Value,
+                    PrecioUnitario = z.Precio,
+                    Total = z.Total,
                     VentaDetalleId = z.VentaDetalleId
                 }).ToList()
             };

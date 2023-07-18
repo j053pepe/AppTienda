@@ -122,7 +122,7 @@ namespace Presentation.AppTiendaWeb.Helpers
                     Ciudad = usuario.UsuarioDireccion.Ciudad,
                     Colonia = usuario.UsuarioDireccion.Colonia,
                     Cp = usuario.UsuarioDireccion.Cp,
-                    EstadoId = usuario.UsuarioDireccion.EstadoId.Value,
+                    EstadoId = usuario.UsuarioDireccion.EstadoId,
                     Numero = usuario.UsuarioDireccion.Numero
                 } : null
             };
