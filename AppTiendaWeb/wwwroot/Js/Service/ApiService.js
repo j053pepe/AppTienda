@@ -1,4 +1,5 @@
 ﻿var CallApi = (type, url, data = "") => {
+    blockScreen();
     var dfd = $.Deferred();
 
     var Api = $.ajax({
@@ -13,8 +14,10 @@
     });
 
     Api.done(function (data) {
+        $('#bodyPage').unblock();
         dfd.resolve(data);
     }).fail(function (data) {
+        $('#bodyPage').unblock();
         console.log("fail");
         dfd.reject(data);
     });
@@ -23,6 +26,7 @@
 };
 
 var CallApiFormData = (type, url, data) => {
+    blockScreen();
     var dfd = $.Deferred();
 
     var Api = $.ajax({
@@ -38,8 +42,10 @@ var CallApiFormData = (type, url, data) => {
     });
 
     Api.done(function (data) {
+        $('#bodyPage').unblock();
         dfd.resolve(JSON.parse(data));
     }).fail(function (data) {
+        $('#bodyPage').unblock();
         dfd.reject(JSON.parse(data));
     });
 
@@ -47,6 +53,7 @@ var CallApiFormData = (type, url, data) => {
 };
 
 var CallJson = (url) => {
+
     var dfd = $.Deferred();
 
     var Api = $.ajax({
@@ -102,8 +109,25 @@ var LoadContent = (htmlUrl, divId) => {
 const formatter = new Intl.NumberFormat('es-MX', {
     style: 'currency',
     currency: 'MXN',
-  
+
     // These options are needed to round to whole numbers if that's what you want.
     //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-  });
+});
+
+function blockScreen() {
+    $('#bodyPage').block({
+        message: `<div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>`,
+        css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        }
+    });
+}

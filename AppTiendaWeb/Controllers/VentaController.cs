@@ -62,8 +62,28 @@ namespace Presentation.AppTiendaWeb.Controllers
                 List<Venta> Ventas = await _ventaService.GetAllVenta();
                 if (Ventas.Any())
                 {
-                    modelResponse.Data= Ventas.Select(x=> (VentaReporteModelView) VentaHelper.EntityToReportModel(x)).ToList();
+                    modelResponse.Data = Ventas.Select(x => VentaHelper.EntityToReportModel(x)).ToList();
                 }
+            }
+            catch (Exception ex)
+            {
+                modelResponse.Message = ex.Message;
+                modelResponse.StatusCode = 500;
+            }
+            return Ok(modelResponse);
+        }
+
+        [HttpDelete]
+        [Route("{ventaId}")]
+        public async Task<ActionResult> UpdateStatus(int ventaId)
+        {
+            ModelResponse<string> modelResponse = new();
+            try
+            {
+                Venta entity = await _ventaService.GetVentaById(ventaId);
+                entity.Activo = !entity.Activo;
+                await _ventaService.UpdateVenta(entity);
+                modelResponse.Data = "Venta actualizada correctamente";
             }
             catch (Exception ex)
             {

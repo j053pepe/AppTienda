@@ -1,1 +1,3 @@
-Scaffold-DbContext -Connection "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=G:/MSAccess/DbTiendaWebNP.accdb;" -Provider EntityFrameworkCore.Jet -OutputDir Model
+ Scaffold-DbContext "your DB connection string"  EntityFrameworkCore.Jet
+
+ Scaffold-DbContext -Connection "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=G:/MSAccess/DbTiendaWebNP.accdb;" -Provider EntityFrameworkCore.Jet -OutputDir StoreDbMapping -Context AppTiendaContext

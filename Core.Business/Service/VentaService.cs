@@ -28,7 +28,7 @@ namespace Core.Business.Service
         public async Task<List<Venta>> GetAllVenta()
         {
             var result = await _ventaRepository.Get(filter: null, orderBy: null, includeProperties: "VentaDetalle,VentaDetalle.Producto,Usuario");
-            return result.ToList();
+            return result.OrderByDescending(x=> x.Fecha).ToList();
         }
 
         public Task<List<Venta>> GetAllVentasByUsuario(string usuarioId)
@@ -36,9 +36,9 @@ namespace Core.Business.Service
             throw new NotImplementedException();
         }
 
-        public Task<Venta> GetVentaById(int ventaId)
+        public async Task<Venta> GetVentaById(int ventaId)
         {
-            throw new NotImplementedException();
+           return await _ventaRepository.GetByIdAsync(ventaId);
         }
 
         public async Task NuevaVenta(Venta entity)
@@ -47,9 +47,10 @@ namespace Core.Business.Service
             await _unitOfWork.SaveAsync();
         }
 
-        public Task UpdateVenta(Venta entity)
+        public async Task UpdateVenta(Venta entity)
         {
-            throw new NotImplementedException();
+            await _ventaRepository.Update(entity);
+            await _unitOfWork.SaveAsync();
         }
     }
 }

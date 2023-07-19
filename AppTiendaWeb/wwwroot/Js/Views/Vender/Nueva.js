@@ -84,7 +84,6 @@ var VentaNueva = {
         $('*[data-button="Eliminar"]').on('click', VentaNueva.ButtonStatus);
     },
     ButtonEditar() {
-        console.log("ButtonEditar");
         let nameCode = $($(this).closest('tr')[0].firstChild)[0].innerText;
         let code = nameCode.split('|')[1];
         let item = VentaNueva.ListProductos.find(x => x.codigo.trim().toLowerCase() == code.trim().toLowerCase());
@@ -94,7 +93,6 @@ var VentaNueva = {
         }
     },
     ButtonStatus() {
-        console.log("ButtonStatus");
         let code = $($(this).closest('tr')[0].firstChild)[0].innerText.split('|')[1];
         let itemIndex = VentaNueva.ListProductos.findIndex(x => x.codigo.trim().toLowerCase() == code.trim().toLowerCase());
         if (itemIndex != -1) {
