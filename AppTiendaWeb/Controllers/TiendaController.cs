@@ -25,11 +25,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPost]
-        //[ValidateToken]
+        [ValidateToken]
         [Route("Register")]
         public async Task<ActionResult> NuevaTienda([FromForm] TiendaNewModelView tiendaWeb)
         {
-            ModelResponse<string> modelResponse = new ModelResponse<string>();
+            ModelResponse<string> modelResponse = new(_config.NewToken);
             try
             {
                 Tienda entity = TiendaHelper.ViewRegisterToEntity(tiendaWeb, _config.Usuario.UsuarioId);
@@ -56,10 +56,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPut]
+        [ValidateToken]
         [Route("Actualizar/{tiendaId}")]
         public async Task<ActionResult> Actualizar([FromForm] TiendaEditModelView tiendaWeb, int tiendaId)
         {
-            ModelResponse<string> modelResponse = new ModelResponse<string>();
+            ModelResponse<string> modelResponse = new(_config.NewToken);
             try
             {
                 Tienda entity = await _tiendaService.GetTiendaById(tiendaId);               
@@ -88,10 +89,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
+        [ValidateToken]
         [Route("BasicData")]
         public async Task<ActionResult> Get()
         {
-            ModelResponse<dynamic> modelResponse = new ModelResponse<dynamic>();
+            ModelResponse<dynamic> modelResponse = new(_config.NewToken);
             try
             {
                 Tienda responseTiendaNueva = await _tiendaService.GetTienda();

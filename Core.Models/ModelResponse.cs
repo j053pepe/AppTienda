@@ -9,12 +9,14 @@ namespace Core.Models
 {
     public class ModelResponse<T>
     {
-        public ModelResponse()
+        public ModelResponse(string token)
         {
             StatusCode = (int)EnumStatus.Success;
+            NewToken = token;
         }
         public string Message { get; set; }
         public int StatusCode { get; set; }
+        public string NewToken { get; set; }
         public T Data { get; set; }
     }
 }

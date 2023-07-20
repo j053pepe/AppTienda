@@ -23,7 +23,7 @@ namespace Presentation.AppTiendaWeb.Controllers
         [Route("Login")]
         public async Task<ActionResult<ModelResponse<string>>> Login(UsuarioLoginModelView user)
         {
-            ModelResponse<string> modelResponse = new();
+            ModelResponse<string> modelResponse = new("");
             try
             {
                 var userDb = await _usuarioService.GetUsuarioByEmail(user.EmailLogin);
@@ -40,8 +40,9 @@ namespace Presentation.AppTiendaWeb.Controllers
                 }
                 else
                 {
+                    UsuarioAuthModelView model= new (userDb);
                     modelResponse.Message = "Login correcto";
-                    modelResponse.Data = $"{AesOperationHelper.EncryptString(userDb.UsuarioId)}";
+                    modelResponse.Data = $"{AesOperationHelper.EncryptString(model.ToJsonString())}";
                 }
             }
             catch (Exception ex)
@@ -57,7 +58,7 @@ namespace Presentation.AppTiendaWeb.Controllers
         [Route("Register")]
         public async Task<ActionResult<ModelResponse<string>>> Register([FromForm] UsuarioNewModelView newUser)
         {
-            ModelResponse<string> modelResponse = new();
+            ModelResponse<string> modelResponse = new("");
             try
             {
                 var usuarioFind = await _usuarioService.GetUsuarioByEmail(newUser.Email);
@@ -89,7 +90,7 @@ namespace Presentation.AppTiendaWeb.Controllers
         [Route("Status")]
         public async Task<ActionResult<string>> Status()
         {
-            ModelResponse<bool> modelResponse = new();
+            ModelResponse<bool> modelResponse = new("");
             try
             {
                 bool result = await _usuarioService.CheckUsersActive();

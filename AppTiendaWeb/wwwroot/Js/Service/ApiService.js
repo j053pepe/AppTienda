@@ -15,7 +15,11 @@
 
     Api.done(function (data) {
         $('#bodyPage').unblock();
-        dfd.resolve(data);
+        if (data.statusCode == 500) { main.CerrarSesion(); }
+        else {
+            if (data.newToken != null) { localStorage.setItem("token", data.newToken); }
+            dfd.resolve(data);
+        }
     }).fail(function (data) {
         $('#bodyPage').unblock();
         console.log("fail");
@@ -43,7 +47,11 @@ var CallApiFormData = (type, url, data) => {
 
     Api.done(function (data) {
         $('#bodyPage').unblock();
-        dfd.resolve(JSON.parse(data));
+        if (data.statusCode == 500) { main.CerrarSesion(); }
+        else {
+            if (data.newToken != null) { localStorage.setItem("token", data.newToken); }
+            dfd.resolve(JSON.parse(data));
+        }
     }).fail(function (data) {
         $('#bodyPage').unblock();
         dfd.reject(JSON.parse(data));
@@ -115,8 +123,8 @@ const formatter = new Intl.NumberFormat('es-MX', {
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
-function blockScreen() {
-    $('#bodyPage').block({
+var blockScreen = (id = '') => {
+    $(id == '' ? '#bodyPage' : id).block({
         message: `<div class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>`,

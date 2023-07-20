@@ -29,7 +29,7 @@ namespace Presentation.AppTiendaWeb.Controllers
         [Route("")]
         public async Task<ActionResult> Nueva(VentaModelView model)
         {
-            ModelResponse<string> modelResponse = new();
+            ModelResponse<string> modelResponse = new(_config.NewToken);
             try
             {
                 Venta entity = await VentaHelper.ModelToEntityAsync(_productoService, model, _config.Usuario);
@@ -53,10 +53,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
+        [ValidateToken]
         [Route("Reporte")]
         public async Task<ActionResult> GetReporte()
         {
-            ModelResponse<List<VentaReporteModelView>> modelResponse = new();
+            ModelResponse<List<VentaReporteModelView>> modelResponse = new(_config.NewToken);
             try
             {
                 List<Venta> Ventas = await _ventaService.GetAllVenta();
@@ -74,10 +75,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpDelete]
+        [ValidateToken]
         [Route("{ventaId}")]
         public async Task<ActionResult> UpdateStatus(int ventaId)
         {
-            ModelResponse<string> modelResponse = new();
+            ModelResponse<string> modelResponse = new(_config.NewToken);
             try
             {
                 Venta entity = await _ventaService.GetVentaById(ventaId);

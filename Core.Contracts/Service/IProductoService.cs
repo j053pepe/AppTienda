@@ -1,9 +1,4 @@
 ﻿using Core.Models.AppTiendaModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Contracts.Service
 {
@@ -13,7 +8,7 @@ namespace Core.Contracts.Service
         public Task Update(Producto entity);
         public Task UpdateStatus(int productoId);
         public Task<Producto> GetById(int productoId, string properties);
-        public Task<List<Producto>> GetAllProducts();
+        public Task<List<Producto>> GetAllProducts(string includeProperties);
         public Task<Producto> GetByCodigo(string codigo);
         public Task<List<Producto>> GetByFilter(string query);
         public Task UpdateStock(int? productoId, decimal? cantidad);

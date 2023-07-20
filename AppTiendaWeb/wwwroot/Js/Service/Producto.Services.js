@@ -9,6 +9,16 @@ var ProductoServices = {
             });
         });
     },
+    GetAllByReport(){
+        return CallApi("get", "producto/Reporte")
+        .done(result => {
+            return result.data;
+        }).fail(result => {
+            alertify.alert('Producto', 'Error al consultar!', function () {
+                alertify.error(result.message == undefined ? `${result.status}-${result.statusText}` : result.message);
+            });
+        });
+    },
     Insert(formData){
         return CallApiFormData("post", "Producto", formData)
         .done(result => {

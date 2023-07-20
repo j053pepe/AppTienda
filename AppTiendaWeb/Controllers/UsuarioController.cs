@@ -30,13 +30,13 @@ namespace Presentation.AppTiendaWeb.Controllers
         [Route("BasicData")]
         public async Task<ActionResult> GetUserAndTienda()
         {
-            ModelResponse<UsuarioTiendaView> modelResponse = new();
+            ModelResponse<UsuarioTiendaView> modelResponse = new(_config.NewToken);
             try
             {
                 var responseStore = await _tiendaService.GetTienda();
                 modelResponse.Data = new UsuarioTiendaView
                 {
-                    UsuarioNombre = $"{_config.Usuario.Nombre} {_config.Usuario.ApellidoPaterno} {_config.Usuario.ApellidoMaterno}",
+                    UsuarioNombre = _config.Usuario.UsuarioNombre,
                     StoreExists = responseStore != null,
                     TiendaNombre = responseStore?.Nombre ?? "",
                     ImageLogo = (responseStore?.TiendaDetalle?.UrlImage ?? "").Replace("wwwroot", "")
@@ -52,15 +52,15 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
-        //[ValidateToken]
+        [ValidateToken]
         [Route("Usuarios")]
         public async Task<ActionResult> GetAllUsers()
         {
-            ModelResponse<List<UsuarioConsultaModelView>> response = new();
+            ModelResponse<List<UsuarioConsultaModelView>> response = new(_config.NewToken);
             try
             {
                 var listUser = await _usuarioService.GetAll();
-                response.Data = listUser//.Where(x => x.UsuarioId != _config.Usuario.UsuarioId)
+                response.Data = listUser.Where(x => x.UsuarioId != _config.Usuario.UsuarioId)
                     .Select(x => UsuarioHelper.UsuarioToUsuarioConsultaModelView(x))
                     .ToList();
             }
@@ -74,10 +74,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpDelete]
+        [ValidateToken]
         [Route("Delete/{usuarioId}")]
         public async Task<ActionResult> DeleteUsuario(string usuarioId)
         {
-            ModelResponse<string> response = new();
+            ModelResponse<string> response = new(_config.NewToken);
             try
             {
                 await _usuarioService.UpdateStatus(usuarioId);
@@ -93,10 +94,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPut]
+        [ValidateToken]
         [Route("Activate/{usuarioId}")]
         public async Task<ActionResult> ActivateUsuario(string usuarioId)
         {
-            ModelResponse<string> response = new();
+            ModelResponse<string> response = new(_config.NewToken);
             try
             {
                 await _usuarioService.UpdateStatus(usuarioId);
@@ -112,10 +114,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPut]
+        [ValidateToken]
         [Route("Update")]
         public async Task<ActionResult> UpdateUsuario(UsuarioConsultaModelView model)
         {
-            ModelResponse<string> response = new();
+            ModelResponse<string> response = new(_config.NewToken);
             try
             {
                 var entity = await _usuarioService.GetUsuarioAndDirectionById(model.UsuarioId);

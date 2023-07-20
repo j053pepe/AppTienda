@@ -20,6 +20,20 @@ namespace Presentation.AppTiendaWeb.Helpers
             };
         }
 
+        public static ProductoReporteModelView EntityToReportModelView(Producto model)
+        {
+            return new ProductoReporteModelView
+            {
+                Codigo = model.Codigo,
+                Nombre = model.Nombre,
+                Precio = model.Precio,
+                ProductoId = model.ProductoId,
+                Stock = model.Stock,
+                CantidadVendida = model.VentaDetalle.Sum(x => x.Cantidad),
+                VentaTotal = model.VentaDetalle.Sum(x => x.Total)
+            };
+        }
+
         public static Producto EntityToModelView(ProductoModelView model)
         {
             return new Producto
@@ -29,7 +43,7 @@ namespace Presentation.AppTiendaWeb.Helpers
                 Fecha = DateTime.Now,
                 Nombre = model.Nombre,
                 Precio = model.Precio,
-                Stock = model.Stock,                
+                Stock = model.Stock,
                 ProductoDetalle = new ProductoDetalle
                 {
                     Descripcion = model.Descripcion,

@@ -66,7 +66,7 @@ var ProductConsulta = {
         this.ListProduct.map(item => {
             let row = `<tr><th scope="row">${item.productId}</th>
             <td>${item.nombre}</td>
-            <td>${item.precio}</td>
+            <td>${formatter.format(item.precio)}</td>
             <td>${item.codigo}</td>
             <td>${item.stock}</td>
             <td>${item.status ? 'Activo' : 'Inactivo'}</td>

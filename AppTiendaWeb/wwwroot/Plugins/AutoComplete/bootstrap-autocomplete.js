@@ -337,7 +337,12 @@
       this._timer = null;
     } // Private
     ;
-
+    $.ajaxSetup({
+      headers:{
+        "Token": localStorage.getItem("token")
+      }
+   });
+   
     _proto._addElementListener = function _addElementListener() {
       var _this = this;
 

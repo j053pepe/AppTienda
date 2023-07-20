@@ -2,6 +2,7 @@
 using Core.Contracts.Service;
 using Core.Models;
 using Core.Models.AppTiendaModels;
+using Core.Models.AppTiendaWebModels;
 using Core.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -16,7 +17,7 @@ namespace Presentation.AppTiendaWeb.CustomAttributes
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            ModelResponse<string> modelResponse = new();
+            ModelResponse<string> modelResponse = new("");
             modelResponse.StatusCode = (int)EnumStatus.Error;
             modelResponse.Message = "Token Invalido.";
 
@@ -25,25 +26,40 @@ namespace Presentation.AppTiendaWeb.CustomAttributes
                 context.Result = new OkObjectResult(modelResponse);
             else
             {
-                IUsuarioService usuarioService = context.HttpContext.RequestServices.GetRequiredService<IUsuarioService>();
-                var response = await UsuarioHelper.TokenToUsuarioAsync(token, usuarioService);
+                var response = UsuarioHelper.TokenToUsuario(token);
                 if (response is null)
                     context.Result = new OkObjectResult(modelResponse);
                 else
                 {
-                    if (!response.Activo.Value)
+                    if (DateTime.Now > response.UsuarioTime.AddMinutes(30))
                     {
-                        modelResponse.Message = "Usuario inactivo";
+                        modelResponse.Message = "Token expirado.";
                         context.Result = new OkObjectResult(modelResponse);
                     }
                     else
                     {
                         ConfigAppWeb _config = context.HttpContext.RequestServices.GetRequiredService<ConfigAppWeb>();
-                        _config.Usuario = response;
+                        _config = RefreshToken(response, _config);
                         await next();
                     }
                 }
             }
+        }
+
+        private ConfigAppWeb RefreshToken(UsuarioAuthModelView response, ConfigAppWeb config)
+        {
+            DateTime nowDate = DateTime.Now;
+            TimeSpan diff;
+            diff = nowDate - response.UsuarioTime.AddMinutes(30);
+
+            if(diff.Minutes>0 && diff.Minutes <= 5)
+            {
+                response.UsuarioTime = response.UsuarioTime.AddMinutes(30);
+                config.NewToken = AesOperationHelper.EncryptString(response.ToJsonString());
+                
+            }
+            config.Usuario = response;
+            return config;
         }
     }
 }

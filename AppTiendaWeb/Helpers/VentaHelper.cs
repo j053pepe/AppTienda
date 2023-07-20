@@ -7,7 +7,7 @@ namespace Presentation.AppTiendaWeb.Helpers
 {
     public class VentaHelper
     {
-        public static async Task<Venta> ModelToEntityAsync(IProductoService productoService, VentaModelView model, Usuario usuario)
+        public static async Task<Venta> ModelToEntityAsync(IProductoService productoService, VentaModelView model, UsuarioAuthModelView usuario)
         {
             Venta entity = new Venta()
             {

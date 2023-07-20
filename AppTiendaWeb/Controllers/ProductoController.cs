@@ -23,13 +23,14 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
+        [ValidateToken]
         [Route("")]
         public async Task<ActionResult> Get()
         {
-            ModelResponse<List<ProductoModelView>> modelResponse = new ModelResponse<List<ProductoModelView>>();
+            ModelResponse<List<ProductoModelView>> modelResponse = new(_config.NewToken);
             try
             {
-                List<Producto> products = await _productoService.GetAllProducts();
+                List<Producto> products = await _productoService.GetAllProducts("ProductoDetalle");
                 modelResponse.Data = products.Select(x => ProductoHelper.EntityToModelView(x)).ToList();
             }
             catch (Exception ex)
@@ -41,6 +42,26 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpGet]
+        [ValidateToken]
+        [Route("Reporte")]
+        public async Task<ActionResult> GetReporte()
+        {
+            ModelResponse<List<ProductoReporteModelView>> modelResponse = new(_config.NewToken);
+            try
+            {
+                List<Producto> products = await _productoService.GetAllProducts("VentaDetalle");
+                modelResponse.Data = products.Select(x => ProductoHelper.EntityToReportModelView(x)).ToList();
+            }
+            catch (Exception ex)
+            {
+                modelResponse.Message = ex.Message;
+                modelResponse.StatusCode = 500;
+            }
+            return Ok(modelResponse);
+        }
+
+        [HttpGet]
+        [ValidateToken]
         [Route("Query/")]
         public async Task<ActionResult> Get([FromQuery] string q)
         {
@@ -59,7 +80,7 @@ namespace Presentation.AppTiendaWeb.Controllers
         [Route("")]
         public async Task<ActionResult> Post([FromForm] ProductoModelView model)
         {
-            ModelResponse<string> modelResponse = new();
+            ModelResponse<string> modelResponse = new(_config.NewToken);
             try
             {
                 Producto entityCode = await _productoService.GetByCodigo(model.Codigo);
@@ -92,10 +113,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPut]
+        [ValidateToken]
         [Route("")]
         public async Task<ActionResult> Put([FromForm] ProductoModelView model)
         {
-            ModelResponse<string> modelResponse = new();
+            ModelResponse<string> modelResponse = new(_config.NewToken);
             try
             {
                 Producto entity = await _productoService.GetById(model.ProductId.Value, "ProductoDetalle");
@@ -124,10 +146,11 @@ namespace Presentation.AppTiendaWeb.Controllers
         }
 
         [HttpPut]
+        [ValidateToken]
         [Route("{productoId}")]
         public async Task<ActionResult> ChangeStatus(int productoId)
         {
-            ModelResponse<string> modelResponse = new();
+            ModelResponse<string> modelResponse = new(_config.NewToken);
             try
             {
                 Producto entity = await _productoService.GetById(productoId, string.Empty);

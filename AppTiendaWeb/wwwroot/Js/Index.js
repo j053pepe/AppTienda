@@ -1,37 +1,55 @@
-﻿var main = {};
+﻿var main = {},
+    ModalAuth, ModalRegister;
+
 $(function () {
     main = {
         init() {
-            $('#btnSalir').on('click', () => {
-                localStorage.removeItem("token");
-            });
+            $('#btnSalir').on('click', main.CerrarSesion);
+            main.ArchivosMenu();
+        },
+        CerrarSesion() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("auth.Status");
+            localStorage.removeItem("DataUser");
+        },
+        ArchivosMenu() {
             CallJson("data/Menu.json")
                 .done(result => {
-                    this.MenuJson = result;                
-                    this.MenuClick();    
-                    if (window.location.hash.length == 0) {                        
-                        this.AuthRegister();
-                        if (localStorage.getItem("token") == 'null' || localStorage.getItem("token") == null)
-                            this.ModalLogin(ModalAuth);
-                        /*else
-                            CallApi("get", "auth/Status")
-                                .then(result => {
-                                    if (!result.data) {
-                                        ModalAuth.hide();
-                                        this.ModalRegister(ModalRegister);
-                                        $("#btnLogin").hide();
-                                    } else
-                                        this.DataUser();
-                                });*/
-                    } else {
-                        main.EventMenu(parseInt(window.location.hash.split('#')[1]));
-                        //this.DataUser();
-                    }
+                    main.MenuJson = result;
+                    main.MenuClick();//Eventos menu          
+                    main.LoginOrRegister();
                 });
+        },
+        LoginOrRegister() {
+            if (localStorage.getItem("token") == 'null' || localStorage.getItem("token") == null) {
+                this.AuthRegister();
+                this.ModalLogin(ModalAuth);
+            } else {
+                if (localStorage.getItem('auth.Status') == 'null' || localStorage.getItem('auth.Status') == null) {
+                    CallApi("get", "auth/Status")
+                        .then(result => {
+                            localStorage.setItem('auth.Status', result.data);
+                            main.CheckStatus();
+                        });
+                } else
+                    main.CheckStatus();
+
+                if (window.location.hash.length != 0)
+                    main.EventMenu(parseInt(window.location.hash.split('#')[1]));
+            }
+        },
+        CheckStatus() {
+            let data = localStorage.getItem('auth.Status');
+            if (!data) {
+                ModalAuth.hide();
+                this.ModalRegister(ModalRegister);
+                $("#btnLogin").hide();
+            } else
+                this.DataUser();
         },
         AuthRegister() {
             this.GetEstados('#EstadoId');
-            var ModalAuth = new bootstrap.Modal(document.getElementById('modalAuth'), {
+            ModalAuth = new bootstrap.Modal(document.getElementById('modalAuth'), {
                 keyboard: false
             }),
                 ModalRegister = new bootstrap.Modal(document.getElementById('modalRegister'), {
@@ -46,8 +64,8 @@ $(function () {
                 ModalRegister.show();
             });
             $('#btnCloseRegister').hide();
-            document.getElementById('modalRegister').addEventListener('hidden.bs.modal',  function (event) {
-                    ModalAuth.show();
+            document.getElementById('modalRegister').addEventListener('hidden.bs.modal', function (event) {
+                ModalAuth.show();
             });
         },
         ModalRegister(ModalRegister, methodExtra) {
@@ -75,7 +93,7 @@ $(function () {
                         alertify.alert('Usuario', 'Error al crear el usuario!', function () { alertify.error(result.message); });
                     });
             }
-           
+
         },
         ModalLogin(ModalAuth) {
             ModalAuth.show();
@@ -83,32 +101,46 @@ $(function () {
                 e.preventDefault();
                 const formData = document.getElementById("frmLogin");
                 let frmFormData = new FormData(formData);
+                blockScreen('#modalAuth');
                 CallApi("post", "auth/login", Object.fromEntries(frmFormData))
                     .done(result => {
+                        $('#modalAuth').unblock();
+                        $('#bodyPage').unblock();
                         if (result.statusCode == 200) {
                             localStorage.setItem("token", result.data);
                             ModalAuth.hide();
-                            main.DataUser();
+                            main.LoginOrRegister();
                         }
                         else
                             alertify.alert('Usuario', 'Error al iniciar sesion!', function () { alertify.error(result.message); });
                     })
                     .fail(result => {
+                        $('#modalAuth').unblock();
+                        $('#bodyPage').unblock();
                         alertify.alert('Usuario', 'Error al iniciar sesion!');
                     });
             });
         },
         DataUser() {
-            UsuarioServices.GetBasicData()
-                .done(result => {
-                    $("#lblNameUser").text(result.data.usuarioNombre);
-                    if (result.data.storeExists) {
-                        $('#lblNameStore').text(result.data.tiendaNombre);
-                        $('#divImageTienda').css('background-image', 'url(' + result.data.imageLogo + ')');
-                    }
-                    else
-                        alertify.alert("Alerta", "Es necesario dar de alta una tienda.", () => { main.CrearTienda(); });
-                });
+            if (localStorage.getItem('DataUser') == 'null' || localStorage.getItem('DataUser') == null) {
+                UsuarioServices.GetBasicData()
+                    .done(result => {
+                        localStorage.setItem('DataUser', JSON.stringify(result.data));
+                        main.SetDataUser();
+                    });
+            } else {
+                main.SetDataUser();
+            }
+        },
+        SetDataUser() {
+            let dataUser = JSON.parse(localStorage.getItem('DataUser'));
+            $("#lblNameUser").text(dataUser.usuarioNombre);
+            if (dataUser.storeExists) {
+                $('#lblNameStore').text(dataUser.tiendaNombre);
+                $('#divImageTienda').css('background-image', 'url(' + dataUser.imageLogo + ')');
+            }
+            else
+                alertify.alert("Alerta", "Es necesario dar de alta una tienda.", () => { main.CrearTienda(); });
         },
         CrearTienda() {
             var ModalTiendaRegister = new bootstrap.Modal(document.getElementById('modalFirstTienda'), {

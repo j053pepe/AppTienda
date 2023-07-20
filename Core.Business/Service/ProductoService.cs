@@ -27,9 +27,9 @@ namespace Core.Business.Service
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<List<Producto>> GetAllProducts()
+        public async Task<List<Producto>> GetAllProducts(string includeProperties)
         {
-            var list =  await _repository.Get(filter: null, orderBy: null, includeProperties: "ProductoDetalle");
+            var list =  await _repository.Get(filter: null, orderBy: null, includeProperties);
             return list.ToList();
         }
 
@@ -66,7 +66,7 @@ namespace Core.Business.Service
         public async Task UpdateStock(int? productoId, decimal? cantidad)
         {
             Producto entity = await _repository.GetByIdAsync(productoId);
-            entity.Stock += cantidad.Value;
+            entity.Stock -= cantidad.Value;
             await _repository.Update(entity);
             await _unitOfWork.SaveAsync();
         }

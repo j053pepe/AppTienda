@@ -1,6 +1,7 @@
 ﻿using Core.Contracts.Service;
 using Core.Models.AppTiendaModels;
 using Core.Models.AppTiendaWebModels;
+using Newtonsoft.Json;
 using System.Security.Cryptography;
 
 namespace Presentation.AppTiendaWeb.Helpers
@@ -127,10 +128,19 @@ namespace Presentation.AppTiendaWeb.Helpers
                 } : null
             };
         }
-        public static async Task<Usuario> TokenToUsuarioAsync(string token, IUsuarioService _usuarioService)
+        public static UsuarioAuthModelView TokenToUsuario(string token)
         {
-            var userId = AesOperationHelper.DecryptString(token);
-            var responseUser = await _usuarioService.GetUsuarioById(userId);
+            UsuarioAuthModelView responseUser;
+            try
+            {
+                string userString = AesOperationHelper.DecryptString(token);
+                responseUser = JsonConvert.DeserializeObject<UsuarioAuthModelView>(userString);
+            }
+            catch(Exception ex) 
+            {
+                responseUser = null;
+            }
+
             return responseUser;
         }
 
@@ -143,13 +153,13 @@ namespace Presentation.AppTiendaWeb.Helpers
             entity.Nombre = model.Nombre;
             entity.Telefono = model.Telefono;
             entity.UsuarioDireccion.Ciudad = model.UsuarioDetalle.Ciudad;
-            entity.UsuarioDireccion.Cp= model.UsuarioDetalle.Cp;
+            entity.UsuarioDireccion.Cp = model.UsuarioDetalle.Cp;
             entity.UsuarioDireccion.Numero = model.UsuarioDetalle.Numero;
             entity.UsuarioDireccion.Colonia = model.UsuarioDetalle.Colonia;
             entity.UsuarioDireccion.Calle = model.UsuarioDetalle.Calle;
             entity.UsuarioDireccion.EstadoId = model.UsuarioDetalle.EstadoId;
 
-            if(!string.IsNullOrEmpty(model.Password))
+            if (!string.IsNullOrEmpty(model.Password))
                 entity.Password = HashPassword(model.Password);
 
             return entity;
