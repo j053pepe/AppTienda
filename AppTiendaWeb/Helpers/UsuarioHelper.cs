@@ -136,7 +136,7 @@ namespace Presentation.AppTiendaWeb.Helpers
                 string userString = AesOperationHelper.DecryptString(token);
                 responseUser = JsonConvert.DeserializeObject<UsuarioAuthModelView>(userString);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 responseUser = null;
             }
@@ -163,6 +163,39 @@ namespace Presentation.AppTiendaWeb.Helpers
                 entity.Password = HashPassword(model.Password);
 
             return entity;
+        }
+
+        public static List<UsuarioReporteModelView> EntityToReportModel(Usuario usuario)
+        {
+            List<UsuarioReporteModelView> Reportes = new List<UsuarioReporteModelView>();
+
+            if (usuario.Venta != null)
+                Reportes.Add(new UsuarioReporteModelView()
+                {
+                    Nombre = "Ventas",
+                    Registros = usuario.Venta.Select(x => new UsuarioReporteDetalle
+                    {
+                        Fecha = x.Fecha.ToString("dd/MM/yyyy h:mm:ss tt"),
+                        Id = x.VentaId.ToString(),
+                        Nombre = $"No. Productos:{x.NumeroPoductos} | Total:{x.Total.ToString("C")}",
+                        Status = x.Activo.Value ? "Activo" : "Inactivo"
+                    }).ToList()
+                });
+
+            if (usuario.Producto != null)
+                Reportes.Add(new UsuarioReporteModelView()
+                {
+                    Nombre = "Productos",
+                    Registros = usuario.Producto.Select(x => new UsuarioReporteDetalle
+                    {
+                        Fecha = x.Fecha.ToString("dd/MM/yyyy h:mm:ss tt"),
+                        Id = x.ProductoId.ToString(),
+                        Nombre = $"Nombre:{x.Nombre} | Codigo:{x.Codigo} | Precio:{x.Precio.ToString("C")}",
+                        Status = x.Activo.Value ? "Activo" : "Inactivo"
+                    }).ToList()
+                });
+
+            return Reportes;
         }
     }
 }

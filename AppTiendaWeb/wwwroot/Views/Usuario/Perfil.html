@@ -1,0 +1,120 @@
+<main>
+    <div class="card">
+        <h5 class="card-header">Usuario - Perfil</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <form method="post" autocomplete="off" id="frmRegister">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Datos personales</h5>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="name"
+                                        required autocomplete="off" />
+                                    <label for="Nombre">Nombre</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="Paterno" name="Paterno" class="form-control"
+                                        placeholder="paterno" required autocomplete="off" />
+                                    <label for="Paterno">Apellido Paterno</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="Materno" name="Materno" class="form-control"
+                                        placeholder="materno" required autocomplete="off" />
+                                    <label for="Materno">Apellido Materno</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="tel" id="Telefono" name="Telefono" class="form-control"
+                                        placeholder="telefono" autocomplete="off" />
+                                    <label for="Telefono">Telefono</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" id="Email" name="Email" class="form-control" placeholder="email"
+                                        required autocomplete="off" />
+                                    <label for="Email">Email</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" id="Password" name="Password" class="form-control"
+                                        placeholder="password" required autocomplete="off" />
+                                    <label for="Password">Contraseña</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" id="ConfirmPassword" name="ConfirmPassword"
+                                        class="form-control" placeholder="ConfirmPassword" required
+                                        autocomplete="off" />
+                                    <label for="ConfirmPassword">Confirma Contraseña</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="Activo" id="Activo" value="true" />
+                                    <input class="form-check-input" type="checkbox" checked disabled readonly>
+                                    <label class="form-check-label">
+                                        Activo
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <h5>Dirección</h5>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <select id="EstadoId" name="EstadoId" class="form-select"
+                                        aria-label="Floating label select example">
+                                    </select>
+                                    <label for="EstadoId">Estado</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="Ciudad" name="Ciudad" class="form-control"
+                                        placeholder="Ciudad" required autocomplete="off" />
+                                    <label for="Ciudad">Ciudad</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="number" id="Cp" name="Cp" class="form-control"
+                                        placeholder="codigo postal" required autocomplete="off" />
+                                    <label for="Cp">Codigo Postal</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="Colonia" name="Colonia" class="form-control"
+                                        placeholder="Colonia" required autocomplete="off" />
+                                    <label for="Colonia">Colonia</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="Calle" name="Calle" class="form-control" placeholder="Calle"
+                                        required autocomplete="off" />
+                                    <label for="Calle">Calle</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="Numero" name="Numero" class="form-control"
+                                        placeholder="Numero" autocomplete="off" />
+                                    <label for="Numero">Numero</label>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-primary">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

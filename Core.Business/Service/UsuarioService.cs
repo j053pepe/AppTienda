@@ -67,5 +67,11 @@ namespace Core.Business.Service
             var result = await _usuarioRepository.Get(x=> x.UsuarioId == usuarioId, orderBy: null, includeProperties: "UsuarioDireccion");
             return result.FirstOrDefault();
         }
+
+        public async Task<Usuario> GetRegistrosByUser(string usuarioId)
+        {
+            var result = await _usuarioRepository.Get(x => x.UsuarioId == usuarioId, orderBy: null, includeProperties: "Producto,Tienda,Venta");
+            return result.FirstOrDefault();
+        }
     }
 }

@@ -11,6 +11,7 @@ $(function () {
             localStorage.removeItem("token");
             localStorage.removeItem("auth.Status");
             localStorage.removeItem("DataUser");
+            location.reload();
         },
         ArchivosMenu() {
             CallJson("data/Menu.json")
@@ -175,7 +176,11 @@ $(function () {
 
             itemMenu.forEach(x => {
                 x.addEventListener('click', event => {
-                    main.EventMenu(parseInt($(x)[0].href.split('#')[1]));
+                    let id = parseInt($(x)[0].href.split('#')[1]);
+                    if (isNaN(id))
+                        window.location = "/index.html";
+                    else
+                        main.EventMenu(id);
                 });
             });
         },

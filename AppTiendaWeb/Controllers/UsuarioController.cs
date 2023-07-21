@@ -133,5 +133,25 @@ namespace Presentation.AppTiendaWeb.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet]
+        [ValidateToken]
+        [Route("Reporte")]
+        public async Task<ActionResult> Reporte()
+        {
+            ModelResponse<List<UsuarioReporteModelView>> response = new(_config.NewToken);
+            try
+            {
+                Usuario registros = await _usuarioService.GetRegistrosByUser(_config.Usuario.UsuarioId);
+                response.Data = UsuarioHelper.EntityToReportModel(registros);
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.StatusCode = (int)EnumStatus.Error;
+            }
+
+            return Ok(response);
+        }
     }
 }

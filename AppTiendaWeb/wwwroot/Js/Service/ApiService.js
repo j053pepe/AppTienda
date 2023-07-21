@@ -17,7 +17,7 @@
         $('#bodyPage').unblock();
         if (data.statusCode == 500) { main.CerrarSesion(); }
         else {
-            if (data.newToken != null) { localStorage.setItem("token", data.newToken); }
+            if (data.newToken && data.newToken != "") localStorage.setItem("token", data.newToken);
             dfd.resolve(data);
         }
     }).fail(function (data) {
@@ -49,7 +49,7 @@ var CallApiFormData = (type, url, data) => {
         $('#bodyPage').unblock();
         if (data.statusCode == 500) { main.CerrarSesion(); }
         else {
-            if (data.newToken != null) { localStorage.setItem("token", data.newToken); }
+            if (data.newToken && data.newToken != "") localStorage.setItem("token", data.newToken);
             dfd.resolve(JSON.parse(data));
         }
     }).fail(function (data) {

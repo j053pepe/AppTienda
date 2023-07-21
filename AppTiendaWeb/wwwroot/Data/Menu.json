@@ -33,5 +33,10 @@
     "MenuId": 7,
     "View": "/Views/Usuario/Reporte.html",
     "Js": "/Js/Views/Usuario/Reporte.js"
+  },
+  {
+    "MenuId": 8,
+    "View": "/Views/Usuario/Perfil.html",
+    "Js": "/Js/Views/Usuario/Perfil.js"
   }
 ]

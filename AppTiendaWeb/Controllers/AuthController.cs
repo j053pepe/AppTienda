@@ -30,25 +30,28 @@ namespace Presentation.AppTiendaWeb.Controllers
                 if (userDb == null)
                 {
                     modelResponse.Message = "email o contraseña incorrecta.";
-                    modelResponse.StatusCode = (int)EnumStatus.Error;
-                }
-
-                if (!UsuarioHelper.VerifyHashedPassword(userDb.Password, user.PasswordLogin))
-                {
-                    modelResponse.Message = "email o contraseña incorrecta.";
-                    modelResponse.StatusCode = (int)EnumStatus.Error;
+                    modelResponse.StatusCode = (int)EnumStatus.CredencialesIncorrectas;
                 }
                 else
                 {
-                    UsuarioAuthModelView model= new (userDb);
-                    modelResponse.Message = "Login correcto";
-                    modelResponse.Data = $"{AesOperationHelper.EncryptString(model.ToJsonString())}";
+
+                    if (!UsuarioHelper.VerifyHashedPassword(userDb.Password, user.PasswordLogin))
+                    {
+                        modelResponse.Message = "email o contraseña incorrecta.";
+                        modelResponse.StatusCode = (int)EnumStatus.CredencialesIncorrectas;
+                    }
+                    else
+                    {
+                        UsuarioAuthModelView model = new(userDb);
+                        modelResponse.Message = "Login correcto";
+                        modelResponse.Data = $"{AesOperationHelper.EncryptString(model.ToJsonString())}";
+                    }
                 }
             }
             catch (Exception ex)
             {
                 modelResponse.Message = ex.Message;
-                modelResponse.StatusCode = (int)EnumStatus.Error;
+                modelResponse.StatusCode = (int)EnumStatus.CredencialesIncorrectas;
             }
 
             return Ok(modelResponse);

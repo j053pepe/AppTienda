@@ -10,5 +10,6 @@ namespace Core.Models.Enums
     {
         Success = 200,
         Error = 500,
+        CredencialesIncorrectas=10
     }
 }

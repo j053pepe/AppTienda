@@ -12,5 +12,6 @@ namespace Core.Contracts.Service
         public Task<List<Usuario>> GetAll();
         public Task<bool> Update(Usuario entity);
         public Task<bool> CheckUsersActive();
+        public Task<Usuario> GetRegistrosByUser(string usuarioId);
     }
 }
