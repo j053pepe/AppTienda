@@ -23,7 +23,8 @@ var UsuarioConsulta = {
                 alertify.alert('Usuario', 'La contraseña debe coincidir con la confirmada!');
                 return false;
             }
-        CallApi("put", "usuario/update", UsuarioConsulta.SetFormToData())
+
+        UsuarioServices.Update(UsuarioConsulta.SetFormToData())
             .done(result => {
                 alertify.success('Guardado');
                 alertify.alert('Usuario', 'Usuario actualizado!', function () {
@@ -60,11 +61,8 @@ var UsuarioConsulta = {
                 let userActivo = x.getAttribute("data-activo");
                 let userId = x.getAttribute("data-usuarioid");
                 let messageConfirm = userActivo == "true" ? "¿Desea desactivar este usuario?" : "¿Desea activar este usuario?";
-                let type = userActivo == "true" ? "delete" : "put";
-                let url = userActivo == "true" ? "usuario/delete/" : "usuario/activate/";
-                url += userId;
                 alertify.confirm('Usuario', messageConfirm, function () {
-                    CallApi(type, url)
+                    UsuarioServices.ChangeStatus(userActivo, userId)
                         .done(result => {
                             alertify.success(result.data);
                             UsuarioConsulta.GetAll();

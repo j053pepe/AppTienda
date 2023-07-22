@@ -53,6 +53,26 @@ namespace Presentation.AppTiendaWeb.Controllers
 
         [HttpGet]
         [ValidateToken]
+        [Route("")]
+        public async Task<ActionResult> Get()
+        {
+            ModelResponse<UsuarioConsultaModelView> response = new(_config.NewToken);
+            try
+            {
+                Usuario entity = await _usuarioService.GetUsuarioAndDirectionById(_config.Usuario.UsuarioId);
+                response.Data = UsuarioHelper.UsuarioToUsuarioConsultaModelView(entity);
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.StatusCode = (int)EnumStatus.Error;
+            }
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [ValidateToken]
         [Route("Usuarios")]
         public async Task<ActionResult> GetAllUsers()
         {
