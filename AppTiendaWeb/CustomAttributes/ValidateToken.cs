@@ -49,10 +49,11 @@ namespace Presentation.AppTiendaWeb.CustomAttributes
         private ConfigAppWeb RefreshToken(UsuarioAuthModelView response, ConfigAppWeb config)
         {
             DateTime nowDate = DateTime.Now;
+            DateTime timeToken30 = response.UsuarioTime.AddMinutes(30);
             TimeSpan diff;
-            diff = nowDate - response.UsuarioTime.AddMinutes(30);
+            diff = timeToken30 - nowDate;
 
-            if(diff.Minutes>0 && diff.Minutes <= 5)
+             if(diff.Minutes>0 && diff.Minutes <= 5)
             {
                 response.UsuarioTime = response.UsuarioTime.AddMinutes(30);
                 config.NewToken = AesOperationHelper.EncryptString(response.ToJsonString());
