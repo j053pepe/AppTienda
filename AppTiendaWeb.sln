@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentacion", "Documentac
 	ProjectSection(SolutionItems) = preProject
 		Manual.html = Manual.html
 		Tecnologías Usadas.docx = Tecnologías Usadas.docx
+		Tecnologías Usadas.pdf = Tecnologías Usadas.pdf
 	EndProjectSection
 EndProject
 Global
