@@ -1,0 +1,209 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Data\\Estadosdb.json",
+      "PackagePath": "staticwebassets\\Data\\Estadosdb.json"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Data\\Menu.json",
+      "PackagePath": "staticwebassets\\Data\\Menu.json"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\Icons\\credit-card.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\credit-card.png"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\Icons\\database.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\database.png"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\Icons\\home-fill.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\home-fill.png"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\Icons\\home.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\home.png"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\Icons\\people.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\people.png"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\Icons\\person.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\person.png"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\Icons\\tools.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\tools.png"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\Tienda\\1\\Seiya.png",
+      "PackagePath": "staticwebassets\\Images\\Tienda\\1\\Seiya.png"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Images\\warning.gif",
+      "PackagePath": "staticwebassets\\Images\\warning.gif"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Js\\Component\\ArrayComponent.js",
+      "PackagePath": "staticwebassets\\Js\\Component\\ArrayComponent.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Js\\Component\\SelectComponent.js",
+      "PackagePath": "staticwebassets\\Js\\Component\\SelectComponent.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Js\\Index.js",
+      "PackagePath": "staticwebassets\\Js\\Index.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Js\\Service\\ApiService.js",
+      "PackagePath": "staticwebassets\\Js\\Service\\ApiService.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Js\\Service\\Usuario.Services.js",
+      "PackagePath": "staticwebassets\\Js\\Service\\Usuario.Services.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Js\\Views\\Usuario\\Consulta.js",
+      "PackagePath": "staticwebassets\\Js\\Views\\Usuario\\Consulta.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\alertify.js",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\alertify.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\alertify.min.js",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\alertify.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\alertify.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\alertify.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\alertify.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\alertify.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\alertify.rtl.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\alertify.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\alertify.rtl.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\alertify.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\bootstrap.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\default.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\default.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\default.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\default.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\default.rtl.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\default.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\default.rtl.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\default.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\semantic.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\semantic.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\semantic.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\semantic.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\semantic.rtl.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\semantic.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\AlertIfy\\css\\themes\\semantic.rtl.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\AlertIfy\\css\\themes\\semantic.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\Bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\Plugins\\Bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\Bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\Plugins\\Bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\Bootstrap\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\Plugins\\Bootstrap\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\Bootstrap\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\Plugins\\Bootstrap\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\jquery-3.7.0.min.js",
+      "PackagePath": "staticwebassets\\Plugins\\jquery-3.7.0.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\Plugins\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\popper.min.js",
+      "PackagePath": "staticwebassets\\Plugins\\popper.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Plugins\\popper.min.js.map",
+      "PackagePath": "staticwebassets\\Plugins\\popper.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Style\\indexStyleSheet.css",
+      "PackagePath": "staticwebassets\\Style\\indexStyleSheet.css"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\Views\\Usuario\\Consulta.html",
+      "PackagePath": "staticwebassets\\Views\\Usuario\\Consulta.html"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Jose Guadalupe\\source\\repos\\j053pepe\\AppTienda\\AppTiendaWeb\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.Presentation.AppTiendaWeb.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.build.Presentation.AppTiendaWeb.props",
+      "PackagePath": "build\\Presentation.AppTiendaWeb.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.Presentation.AppTiendaWeb.props",
+      "PackagePath": "buildMultiTargeting\\Presentation.AppTiendaWeb.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.buildTransitive.Presentation.AppTiendaWeb.props",
+      "PackagePath": "buildTransitive\\Presentation.AppTiendaWeb.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
