@@ -11,21 +11,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.AppTiendaWeb",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{74A945E2-CBDA-43A7-BE73-281D402D5716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Business", "Core.Business\Core.Business.csproj", "{7469C907-8774-4D9D-B31F-7E22669B6638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Business", "Core.Business\Core.Business.csproj", "{7469C907-8774-4D9D-B31F-7E22669B6638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Contracts", "Core.Contracts\Core.Contracts.csproj", "{34889CE6-DC30-4E35-A842-5CB2B91CB2FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Contracts", "Core.Contracts\Core.Contracts.csproj", "{34889CE6-DC30-4E35-A842-5CB2B91CB2FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Models", "Core.Models\Core.Models.csproj", "{3AC3C139-AECD-45A3-B56F-700CFF944057}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Models", "Core.Models\Core.Models.csproj", "{3AC3C139-AECD-45A3-B56F-700CFF944057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructure.Data", "Infraestructure.Data\Infraestructure.Data.csproj", "{9C107E28-5A34-4220-BB4E-E85A472662AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infraestructure.Data", "Infraestructure.Data\Infraestructure.Data.csproj", "{9C107E28-5A34-4220-BB4E-E85A472662AC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transversal", "Transversal", "{B67E5A60-2410-4A7A-A367-E69E198744CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transversal.Resolver", "Transversal.Resolver\Transversal.Resolver.csproj", "{EAE5504A-0585-4BFC-B81F-3E91B621073D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transversal.Resolver", "Transversal.Resolver\Transversal.Resolver.csproj", "{EAE5504A-0585-4BFC-B81F-3E91B621073D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{CFB15E27-FC40-4FCA-89DC-ABA2329EDC06}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentacion", "Documentacion", "{374E9096-8DAD-4084-836D-C4A81B71A2AD}"
 	ProjectSection(SolutionItems) = preProject
-		Notas.txt = Notas.txt
+		Manual.html = Manual.html
+		Tecnologías Usadas.docx = Tecnologías Usadas.docx
 	EndProjectSection
 EndProject
 Global
