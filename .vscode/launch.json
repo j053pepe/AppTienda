@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/AppTiendaWeb/bin/Debug/net6.0/Presentation.AppTiendaWeb.dll",
+            "program": "${workspaceFolder}/Presentation/AppTiendaWeb/bin/Debug/net6.0/Presentation.AppTiendaWeb.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/AppTiendaWeb",
+            "cwd": "${workspaceFolder}/Presentation/AppTiendaWeb",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",

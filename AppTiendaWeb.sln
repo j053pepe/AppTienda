@@ -21,14 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transversal", "Transversal"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transversal.Resolver", "Transversal.Resolver\Transversal.Resolver.csproj", "{EAE5504A-0585-4BFC-B81F-3E91B621073D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentacion", "Documentacion", "{374E9096-8DAD-4084-836D-C4A81B71A2AD}"
-	ProjectSection(SolutionItems) = preProject
-		Manual.html = Manual.html
-		Tecnologías Usadas.docx = Tecnologías Usadas.docx
-		Tecnologías Usadas.pdf = Tecnologías Usadas.pdf
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.AppTiendaWeb", "Presentation\AppTiendaWeb\Presentation.AppTiendaWeb.csproj", "{436AA715-7E70-4A9C-83DE-9ACBAA0C10A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{83CFF66F-AEB8-43AB-8837-B97D3ECA93E2}"
+	ProjectSection(SolutionItems) = preProject
+		Documentacion\Manual.html = Documentacion\Manual.html
+		Documentacion\Notas.txt = Documentacion\Notas.txt
+		Documentacion\Tecnologías Usadas.docx = Documentacion\Tecnologías Usadas.docx
+		Documentacion\Tecnologías Usadas.pdf = Documentacion\Tecnologías Usadas.pdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
