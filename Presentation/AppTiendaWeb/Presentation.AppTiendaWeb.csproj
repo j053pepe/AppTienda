@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\Icons\" />
-    <Folder Include="wwwroot\Images\Documentacion\" />
     <Folder Include="wwwroot\Style\" />
     <Folder Include="wwwroot\Views\Usuario\" />
   </ItemGroup>

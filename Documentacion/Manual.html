@@ -92,8 +92,8 @@
             <div class="accordion" id="divCotenedorGneral">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            <h3> Requisitos previos.</h3>
+                        <button class="accordion-button" type="button" id="btnPrimerItem" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <h3> Requisitos previos</h3>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
@@ -227,17 +227,99 @@
                                 </div>
                             </div>
                         </div>
+                        <hr />
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="md-12">
+                                    <h4>Diagrama de tablas</h4>
+                                    <p>
+                                        Para visualizar las tablas es necesario instalar MS Access, una vez instalado podra abrir el archivo.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <img class="img-thumbnail" width="800" src="../Presentation/AppTiendaWeb/wwwroot/Images/Documentacion/RelacionesDB.png" />
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="md-12">
+                                    <h4>Agregar contraseña</h4>
+                                    <p>
+                                        Es necesario agregar una contraseña para poder tener mayor seguridad.
+                                        <br />
+                                        La contraseña usada en este video es <b>Abc123456$</b>
+                                        <br />
+                                        Misma que se usara más adelante en el proyecto.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <video src="../Presentation/AppTiendaWeb/wwwroot/Images/Documentacion/MSAccess-Password.mp4" width="800" controls></video>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                            Accordion Item #3
+                            <h3>Visual Studio Code</h3>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            <div class="row">
+                                <div class="md-12">
+                                    <h4>Abrir Proyecto</h4>
+                                    <p>
+                                        Abrimos VSCode y seleciomanos directorio donde se encuentra el proyecto.
+                                    </p>
+                                    <div class="md-12">
+                                        <img class="img-thumbnail" width="800" src="../Presentation/AppTiendaWeb/wwwroot/Images/Documentacion/VsCodeOpenProyect.png" />
+                                    </div>
+                                    <p>
+                                        Seleccionar <b>Si, Confío en los autores</b>
+                                        <br />
+                                        Abrir archivo <b>Program.cs</b> que esta dentro de la carpeta <b>\Presentation\AppTiendaWeb\</b>
+                                        <br />
+                                        Mostrara mensaje de instalar extencion <b>C#</b> si aun no esta instalada.
+                                    </p>
+                                    <div class="md-12">
+                                        <img class="img-thumbnail" width="800" src="../Presentation/AppTiendaWeb/wwwroot/Images/Documentacion/VsCodeInstallCSharp.png" />
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="md-12">
+                                    <h4>Configurar contraseña en proyecto</h4>
+                                    <p>
+                                        Abrir archivo <b>appsettings.Development.json</b> que esta dentro de la carpeta <b>\Presentation\AppTiendaWeb\</b>
+                                        <br />
+                                        Se debe mostrar como el siguiente ejemplo.
+                                    </p>
+                                    <div class="md-12">
+                                        <textarea class="form-control text-start" rows="12" readonly>
+                                            {
+                                            "ConnectionStrings": {
+                                            "DbMsAccess": "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=G:/MSAccess/DbTiendaWeb.accdb;Jet OLEDB:Database Password=Abc123456$;"
+                                            },
+                                            "Logging": {
+                                            "LogLevel": {
+                                            "Default": "Information",
+                                            "Microsoft.AspNetCore": "Warning"
+                                            }
+                                            }
+                                            }
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -275,5 +357,8 @@
     <script type="text/javascript" src="../Presentation/AppTiendaWeb/wwwroot/Plugins/Bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="../Presentation/AppTiendaWeb/wwwroot/Plugins/jquery-3.7.0.min.js"></script>
     <script src="../Presentation/AppTiendaWeb/wwwroot/Plugins/popper.min.js"></script>
+    <script type="text/javascript">
+        $('#btnPrimerItem').click();
+    </script>
 </body>
 </html>
