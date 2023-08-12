@@ -6,6 +6,7 @@
     <link href="../Presentation/AppTiendaWeb/wwwroot/Plugins/Bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../Presentation/AppTiendaWeb/wwwroot/Style/cover.css" rel="stylesheet">
+    <link href="../Presentation/AppTiendaWeb/wwwroot/Plugins/Json/jquery.json-viewer.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -184,7 +185,7 @@
                                 <div class="md-12">
                                     <h4>Microsoft.ACE.OLEDB.12.0</h4>
                                     <p>
-                                        El proveedor Microsoft.ACE.OLEDB.12.0 es un componente del motor de base de datos de Microsoft Access, 
+                                        El proveedor Microsoft.ACE.OLEDB.12.0 es un componente del motor de base de datos de Microsoft Access,
                                         que permite conectarse a bases de datos de Access y otras fuentes de datos como hojas de cálculo de Excel.
                                     </p>
                                 </div>
@@ -297,27 +298,30 @@
                             <hr />
                             <div class="row">
                                 <div class="md-12">
-                                    <h4>Configurar contraseña en proyecto</h4>
+                                    <h4>Configurar base de datos</h4>
                                     <p>
                                         Abrir archivo <b>appsettings.Development.json</b> que esta dentro de la carpeta <b>\Presentation\AppTiendaWeb\</b>
                                         <br />
                                         Se debe mostrar como el siguiente ejemplo.
                                     </p>
-                                    <div class="md-12">
-                                        <textarea class="form-control text-start" rows="12" readonly>
-                                            {
-                                            "ConnectionStrings": {
-                                            "DbMsAccess": "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=G:/MSAccess/DbTiendaWeb.accdb;Jet OLEDB:Database Password=Abc123456$;"
-                                            },
-                                            "Logging": {
-                                            "LogLevel": {
-                                            "Default": "Information",
-                                            "Microsoft.AspNetCore": "Warning"
-                                            }
-                                            }
-                                            }
-                                        </textarea>
-                                    </div>
+                                    <pre id="json-viewer" style="text-align:left"></pre>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="md-12">
+                                    <h5>Datos de tu base de datos</h5>
+                                </div>
+                                <div class="md-6 form-floating">
+                                    <input type="text" class="form-control" id="pathFile" placeholder="pathfile" />
+                                    <label class="control-label" for="pathfile">Pega la ruta de tu archivo de base de datos</label>
+                                </div>
+                                <div class="md-6 form-floating">
+                                    <input type="password" class="form-control" id="txtPasswordDb" placeholder="password" />
+                                    <label class="control-label" for="txtPasswordDb">Ingresa la contraseña</label>
+                                </div>
+                                <div class="md-12">
+                                    <h5>Vista previa con datos modificados</h5>
+                                    <pre id="json-viewer-update" style="text-align:left"></pre>
                                 </div>
                             </div>
                         </div>
@@ -357,8 +361,36 @@
     <script type="text/javascript" src="../Presentation/AppTiendaWeb/wwwroot/Plugins/Bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="../Presentation/AppTiendaWeb/wwwroot/Plugins/jquery-3.7.0.min.js"></script>
     <script src="../Presentation/AppTiendaWeb/wwwroot/Plugins/popper.min.js"></script>
+    <script src="../Presentation/AppTiendaWeb/wwwroot/Plugins/Json/jquery.json-viewer.js"></script>
     <script type="text/javascript">
         $('#btnPrimerItem').click();
+        // get JSON
+        let result = {
+            "ConnectionStrings": {
+                "DbMsAccess": "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=G:/MSAccess/DbTiendaWeb.accdb;Jet OLEDB:Database Password=Abc123456$;"
+            },
+            "Logging": { "LogLevel": { "Default": "Information", "Microsoft.AspNetCore": "Warning" } }
+        };
+        let conection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=G:/MSAccess/DbTiendaWeb.accdb;Jet OLEDB:Database Password=Abc123456$;";
+
+        function setJson() {
+            try {                
+                $('#json-viewer').json_viewer(result);
+            } catch (ex) {
+                alert('Wrong JSON Format: ' + ex);
+            }
+        }
+        setJson();
+        document.getElementById('pathFile').addEventListener('change', function (e) {
+            let path = e.target.value;
+            path = path.replace(\,`/`);
+            result.ConnectionStrings.DbMsAccess = conection.replace('G:/MSAccess', path);
+            $('#json-viewer-update').json_viewer(result);
+        });
+        document.getElementById('txtPasswordDb').addEventListener('change', function (e) {
+            result.ConnectionStrings.DbMsAccess = conection.replace('Abc123456$', e.target.value);
+            $('#json-viewer-update').json_viewer(result);
+        });
     </script>
 </body>
 </html>
