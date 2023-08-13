@@ -322,6 +322,7 @@
                                 <div class="md-12">
                                     <h5>Vista previa con datos modificados</h5>
                                     <pre id="json-viewer-update" style="text-align:left"></pre>
+                                    <button class="btn btn-sm btn-outline-info" onclick="CopyToClipboard()" id="btnCopy">Copiar al portapapeles</button>
                                 </div>
                             </div>
                         </div>
@@ -330,7 +331,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFor" aria-expanded="false" aria-controls="panelsStayOpen-collapseFor">
-                            Accordion Item #4
+                            <h3>CSharp Api</h3>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseFor" class="accordion-collapse collapse">
@@ -342,7 +343,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                            Accordion Item #5
+                            <h3>Jquery + Ajax + Api</h3>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
@@ -363,6 +364,7 @@
     <script src="../Presentation/AppTiendaWeb/wwwroot/Plugins/popper.min.js"></script>
     <script src="../Presentation/AppTiendaWeb/wwwroot/Plugins/Json/jquery.json-viewer.js"></script>
     <script type="text/javascript">
+        $('#btnCopy').hide();
         $('#btnPrimerItem').click();
         // get JSON
         let result = {
@@ -380,16 +382,46 @@
                 alert('Wrong JSON Format: ' + ex);
             }
         }
+        function replaceInJson(path, password) {
+            path = path.replaceAll('\\', `/`);
+            if (path != '' && password=='') {                
+                result.ConnectionStrings.DbMsAccess = conection.replace('G:/MSAccess', path);
+            }
+            else if (path == '' && password != '')
+                result.ConnectionStrings.DbMsAccess = conection.replace('Abc123456$', password);
+            else
+                result.ConnectionStrings.DbMsAccess = conection.replace('G:/MSAccess', path).replace('Abc123456$', password);
+
+            $('#btnCopy').show();
+            $('#json-viewer-update').json_viewer(result);
+        }
+
+        function CopyToClipboard() {
+            // Get the text field
+            var copyText = document.getElementById("json-viewer-update");
+
+            //Create textarea
+            const textArea = document.createElement('textarea');
+
+            //copy to textarea
+            textArea.textContent = copyText.innerText
+
+            // Select the text field
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(textArea.value).then(() => {
+                // Alert the copied text
+                alert("Texto copiado");
+            })
+        }
         setJson();
         document.getElementById('pathFile').addEventListener('change', function (e) {
-            let path = e.target.value;
-            path = path.replace(\,`/`);
-            result.ConnectionStrings.DbMsAccess = conection.replace('G:/MSAccess', path);
-            $('#json-viewer-update').json_viewer(result);
+            replaceInJson(e.target.value, $('#txtPasswordDb').val());
         });
         document.getElementById('txtPasswordDb').addEventListener('change', function (e) {
-            result.ConnectionStrings.DbMsAccess = conection.replace('Abc123456$', e.target.value);
-            $('#json-viewer-update').json_viewer(result);
+            replaceInJson($('#pathFile').val(), e.target.value);
         });
     </script>
 </body>
